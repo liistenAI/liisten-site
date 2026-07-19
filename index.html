@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Liisten — AUSTRAC-mapped risk assessments from your client meetings</title>
+<meta name="description" content="Liisten is purpose-built for Australian Tranche 2 firms — it turns a consented client conversation into an AUSTRAC-mapped preliminary risk assessment. Onshore in Sydney.">
+<meta property="og:title" content="Liisten — compliance peace of mind, from the first meeting">
+<meta property="og:description" content="Purpose-built for Australian Tranche 2 firms — AUSTRAC-mapped preliminary risk assessments from your client meetings.">
+<meta property="og:type" content="website">
+<style>
+  :root {
+    --ink: #14171b;
+    --ink-soft: #3a4048;
+    --muted: #6b7280;
+    --faint: #9aa2ac;
+    --line: #e7e9ee;
+    --bg: #f5f6f8;
+    --card: #ffffff;
+    --metal-1: #7e8894;
+    --metal-2: #2a313a;
+    --high: #b3261e;
+    --med: #b26a00;
+    --low: #1b7f4d;
+    --radius: 16px;
+    --shadow-sm: 0 1px 2px rgba(20,23,27,.06);
+    --shadow: 0 8px 30px rgba(20,23,27,.08);
+    --shadow-lg: 0 24px 60px rgba(20,23,27,.12);
+    --maxw: 1120px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, Helvetica, Arial, sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden; /* guard: the page must never scroll sideways on mobile */
+  }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 24px; }
+  .mono { font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace; }
+  a { color: inherit; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(245,246,248,.82);
+    backdrop-filter: saturate(180%) blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-in { display: flex; align-items: center; justify-content: space-between; height: 66px; }
+  .brand { display: flex; align-items: center; gap: 11px; font-weight: 800; letter-spacing: -.02em; font-size: 20px; }
+  .brand svg { display: block; }
+  .nav-cta {
+    font-size: 14.5px; font-weight: 650; text-decoration: none;
+    background: var(--ink); color: #fff; padding: 9px 16px; border-radius: 999px;
+    transition: transform .12s ease, background .2s ease;
+  }
+  .nav-cta:hover { transform: translateY(-1px); background: #000; }
+
+  /* Buttons */
+  .btn { display: inline-flex; align-items: center; gap: 8px; font-weight: 650; text-decoration: none;
+    border-radius: 999px; padding: 14px 24px; font-size: 16px; cursor: pointer; border: 1px solid transparent;
+    transition: transform .12s ease, background .2s ease, border-color .2s ease; }
+  .btn-primary { background: var(--ink); color: #fff; }
+  .btn-primary:hover { transform: translateY(-1px); background: #000; }
+  .btn-ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn-ghost:hover { border-color: var(--faint); background: #fff; }
+
+  .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+
+  /* Hero */
+  header.hero { padding: 74px 0 40px; overflow: hidden; }
+  .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 56px; align-items: center; }
+  h1 { font-size: clamp(38px, 5.4vw, 62px); line-height: 1.03; letter-spacing: -.035em; font-weight: 850; margin: 18px 0 0; }
+  h1 .dim { color: var(--faint); }
+  .lede { font-size: 19px; color: var(--ink-soft); margin: 22px 0 30px; max-width: 34em; }
+  .lede b { color: var(--ink); font-weight: 650; }
+  .hero-cta { display: flex; gap: 12px; flex-wrap: wrap; }
+  .assure { margin-top: 20px; font-size: 13.5px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--low); box-shadow: 0 0 0 3px rgba(27,127,77,.14); }
+
+  /* Risk card (hero visual) */
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+    box-shadow: var(--shadow-lg); overflow: hidden;
+  }
+  .card-head { display: flex; align-items: center; justify-content: space-between; padding: 15px 18px; border-bottom: 1px solid var(--line); }
+  .card-head .lbl { font-size: 11px; letter-spacing: .12em; color: var(--muted); }
+  .live { display: inline-flex; align-items: center; gap: 6px; font-size: 11px; letter-spacing: .1em; color: var(--low); font-weight: 700; }
+  .live .pulse { width: 7px; height: 7px; border-radius: 50%; background: var(--low); animation: pulse 1.8s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  .card-sub { padding: 16px 18px 4px; display: flex; align-items: flex-end; justify-content: space-between; }
+  .card-sub .who { font-weight: 750; font-size: 17px; letter-spacing: -.01em; }
+  .card-sub .meta { font-size: 11.5px; color: var(--faint); }
+  .overall { text-align: right; }
+  .overall .k { font-size: 10.5px; letter-spacing: .1em; color: var(--muted); }
+  .pill { display: inline-block; font-weight: 700; font-size: 12px; padding: 3px 11px; border-radius: 999px; }
+  .pill.high { color: var(--high); background: rgba(179,38,30,.10); }
+  .pill.med  { color: var(--med);  background: rgba(178,106,0,.12); }
+  .pill.low  { color: var(--low);  background: rgba(27,127,77,.12); }
+  .rows { padding: 8px 18px 6px; }
+  .row { display: flex; align-items: center; justify-content: space-between; gap: 14px; padding: 10px 0; border-bottom: 1px solid #f1f2f5; }
+  .row:last-child { border-bottom: 0; }
+  .row .f { font-size: 14px; font-weight: 600; }
+  .row .q { font-size: 11.5px; color: var(--faint); margin-top: 2px; overflow-wrap: anywhere; }
+  .card-sub .who { overflow-wrap: anywhere; }
+  .row .q .ts { color: #b9bfc8; }
+  .card-foot { padding: 13px 18px; background: #fafbfc; border-top: 1px solid var(--line); font-size: 12px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .card-foot svg { flex: none; }
+
+  /* Section shells */
+  section { padding: 76px 0; }
+  .sec-head { max-width: 40em; }
+  h2 { font-size: clamp(28px, 3.6vw, 40px); line-height: 1.08; letter-spacing: -.03em; font-weight: 820; margin: 10px 0 0; }
+  .sec-head p { font-size: 18px; color: var(--ink-soft); margin: 16px 0 0; }
+
+  /* Feature trio */
+  .trio { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 44px; }
+  .feat { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 24px; box-shadow: var(--shadow-sm); }
+  .feat .n { font-size: 11px; letter-spacing: .14em; color: var(--faint); }
+  .feat h3 { font-size: 19px; letter-spacing: -.01em; margin: 14px 0 8px; font-weight: 750; }
+  .feat p { margin: 0; color: var(--muted); font-size: 14.5px; }
+  .feat .ic { width: 40px; height: 40px; border-radius: 11px; background: #f3f4f6; display: grid; place-items: center; margin-bottom: 4px; }
+
+  /* Steps */
+  .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; margin-top: 48px; }
+  .step .num { font-size: 13px; font-weight: 700; color: var(--metal-2); width: 34px; height: 34px; border: 1.5px solid var(--line); border-radius: 50%; display: grid; place-items: center; }
+  .step h3 { font-size: 20px; letter-spacing: -.015em; margin: 18px 0 8px; font-weight: 780; }
+  .step p { margin: 0; color: var(--ink-soft); font-size: 15px; }
+
+  .band { background: #fff; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+
+  /* Audience */
+  .aud { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 40px; }
+  .aud .a { border: 1px solid var(--line); border-radius: var(--radius); padding: 22px; background: var(--card); box-shadow: var(--shadow-sm); }
+  .aud .a .t { font-weight: 720; font-size: 16px; }
+  .aud .a .d { font-size: 13px; color: var(--muted); margin-top: 5px; }
+
+  /* Waitlist */
+  .wait { background: var(--ink); color: #fff; border-radius: 28px; padding: 56px; margin: 0 auto; box-shadow: var(--shadow-lg); position: relative; overflow: hidden; }
+  .wait::after { content: ""; position: absolute; inset: 0; background: radial-gradient(700px 320px at 82% -10%, rgba(255,255,255,.10), transparent 60%); pointer-events: none; }
+  .wait h2 { color: #fff; }
+  .wait p.sub { color: #b9c0c9; font-size: 18px; margin: 16px 0 30px; max-width: 40em; }
+  form.wl { display: grid; grid-template-columns: 1fr 1fr auto; gap: 12px; max-width: 720px; position: relative; z-index: 1; }
+  .wl input, .wl select {
+    font: inherit; font-size: 15.5px; padding: 14px 16px; border-radius: 12px; border: 1px solid #3a4149;
+    background: #1d2127; color: #fff; width: 100%;
+  }
+  .wl input::placeholder { color: #8b929b; }
+  .wl input:focus, .wl select:focus { outline: 2px solid #6b7480; outline-offset: 1px; border-color: transparent; }
+  .wl .full { grid-column: 1 / -1; }
+  .wl button { grid-column: 1 / -1; justify-content: center; background: #fff; color: var(--ink); }
+  .wl button:hover { background: #f0f1f3; }
+  .wl-note { color: #8b929b; font-size: 13px; margin-top: 14px; position: relative; z-index: 1; }
+  .wl-ok { display: none; position: relative; z-index: 1; }
+  .wl-ok.show { display: block; }
+  .wl-ok .big { font-size: 22px; font-weight: 780; letter-spacing: -.01em; }
+  .wl-ok .small { color: #b9c0c9; margin-top: 8px; }
+  .wl-err { color: #f3b0ab; font-size: 13.5px; margin-top: 12px; display: none; }
+  .wl-err.show { display: block; }
+
+  /* Footer */
+  footer { padding: 54px 0 60px; }
+  .foot-in { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .foot-brand { display: flex; align-items: center; gap: 11px; font-weight: 800; letter-spacing: -.02em; }
+  .foot-tag { color: var(--muted); font-size: 13.5px; }
+  .foot-legal { color: var(--faint); font-size: 12.5px; }
+
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 40px; }
+    .trio, .steps, .aud { grid-template-columns: 1fr; }
+    .aud { grid-template-columns: 1fr 1fr; }
+    form.wl { grid-template-columns: 1fr; }
+    .wait { padding: 38px 26px; border-radius: 22px; }
+    section { padding: 58px 0; }
+  }
+  @media (max-width: 560px) {
+    .aud { grid-template-columns: 1fr; }
+    header.hero { padding: 48px 0 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <div class="wrap nav-in">
+    <div class="brand">
+      <svg width="30" height="20" viewBox="0 0 64 40" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7e8894"/><stop offset=".5" stop-color="#454e58"/><stop offset="1" stop-color="#252c34"/>
+        </linearGradient></defs>
+        <rect x="8.5"  y="13.2" width="8" height="13.6" rx="4" fill="url(#g)"/>
+        <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="url(#g)"/>
+        <rect x="34.5" y="3"    width="8" height="34"   rx="4" fill="url(#g)"/>
+        <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="url(#g)"/>
+      </svg>
+      Liisten
+    </div>
+    <a class="nav-cta" href="#waitlist">Join the waiting list</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow mono">AUSTRAC Tranche 2 · Onshore in Sydney</div>
+      <h1>Record the meeting.<br><span class="dim">We'll handle the</span> risk assessment.</h1>
+      <p class="lede">Liisten is <b>purpose-built for Australian Tranche 2 firms</b> — it turns a consented client conversation into an <b>AUSTRAC-mapped preliminary risk assessment</b>, transcribed, diarised, evidence-cited, and ready for you to review and sign. Compliance peace of mind, from the first meeting.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#waitlist">Join the waiting list</a>
+        <a class="btn btn-ghost" href="#how">See how it works</a>
+      </div>
+      <div class="assure"><span class="dot"></span> Consent-first · evidence-cited · your data never leaves Australia</div>
+    </div>
+
+    <!-- Live risk-assessment card -->
+    <div class="card" role="img" aria-label="Example preliminary risk assessment produced by Liisten">
+      <div class="card-head">
+        <span class="lbl mono">PRELIMINARY RISK ASSESSMENT</span>
+        <span class="live mono"><span class="pulse"></span>AI DRAFT</span>
+      </div>
+      <div class="card-sub">
+        <div><div class="who">Marcus W. — new client</div><div class="meta mono">Onboarding · 7 factors · evidence-cited</div></div>
+        <div class="overall"><div class="k mono">OVERALL</div><span class="pill high">High</span></div>
+      </div>
+      <div class="rows">
+        <div class="row"><div><div class="f">Cash intensity</div><div class="q mono">"probably seventy percent cash" <span class="ts">[01:32]</span></div></div><span class="pill high">High</span></div>
+        <div class="row"><div><div class="f">Source of funds</div><div class="q mono">"the rest from a private lender" <span class="ts">[02:02]</span></div></div><span class="pill high">High</span></div>
+        <div class="row"><div><div class="f">PEP / sanctions indicators</div><div class="q mono">"my partner's wife is a state MP" <span class="ts">[02:28]</span></div></div><span class="pill med">Medium</span></div>
+        <div class="row"><div><div class="f">Geography</div><div class="q mono">"inheritance came from New Zealand" <span class="ts">[02:14]</span></div></div><span class="pill med">Medium</span></div>
+        <div class="row"><div><div class="f">Delivery channel</div><div class="q mono">"met in person at the office" <span class="ts">[00:15]</span></div></div><span class="pill low">Low</span></div>
+      </div>
+      <div class="card-foot">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M20 6 9 17l-5-5" stroke="#1b7f4d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        Every rating backed by a quote and timestamp — you review, adjust, and sign.
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===== DIFFERENTIATOR ===== -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">Why Liisten</div>
+      <h2>Purpose-built for Australian compliance.</h2>
+      <p>Plenty of tools transcribe a meeting. Liisten goes further for Australian firms — mapping the conversation to the AUSTRAC framework, citing the evidence behind every rating, and keeping the whole thing onshore.</p>
+    </div>
+    <div class="trio">
+      <div class="feat">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 3a4 4 0 0 1 4 4v4a4 4 0 0 1-8 0V7a4 4 0 0 1 4-4Z" stroke="#3a4048" stroke-width="1.7"/><path d="M6 11a6 6 0 0 0 12 0M12 17v4" stroke="#3a4048" stroke-width="1.7" stroke-linecap="round"/></svg></div>
+        <div class="n mono">FEATURE · 01</div>
+        <h3>Consent-first recording</h3>
+        <p>Every session opens with a consent script. Nothing is recorded until the client agrees — captured and time-stamped in the record.</p>
+      </div>
+      <div class="feat">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 19V5m5 14V9m5 10V7m5 12V11" stroke="#3a4048" stroke-width="1.9" stroke-linecap="round"/></svg></div>
+        <div class="n mono">FEATURE · 02</div>
+        <h3>AUSTRAC-mapped assessment</h3>
+        <p>Seven risk factors scored against the AUSTRAC framework — client type, structure, cash, geography, source of funds, PEP indicators and more — each with a verbatim quote.</p>
+      </div>
+      <div class="feat">
+        <div class="ic" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z" stroke="#3a4048" stroke-width="1.7"/><circle cx="12" cy="10" r="2.4" stroke="#3a4048" stroke-width="1.7"/></svg></div>
+        <div class="n mono">FEATURE · 03</div>
+        <h3>Onshore in Sydney</h3>
+        <p>Recording, transcription and AI all run in Australia (AWS Sydney). Your client's conversation never leaves the country.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HOW IT WORKS ===== -->
+<section id="how">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">How it works</div>
+      <h2>Three steps. You stay in control.</h2>
+      <p>Liisten does the groundwork so you don't take notes during the meeting — but the assessment is a starting point you review and sign, never a decision made for you.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h3>Record, with consent</h3>
+        <p>Set the phone down, read the consent line, and have the conversation. Liisten captures it — nothing staged, nothing to type.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h3>AI does the groundwork</h3>
+        <p>It transcribes, identifies who said what, and drafts a preliminary risk assessment mapped to AUSTRAC — with the evidence behind every rating.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h3>You review &amp; sign</h3>
+        <p>Adjust any rating with your professional judgment, close out follow-ups, then sign and send. Your signed review is the record of file.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AUDIENCE ===== -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">Built for Tranche 2</div>
+      <h2>Whatever your obligations, the meeting is the record.</h2>
+      <p>As Australia extends AML/CTF obligations to professional services, the client conversation becomes evidence. Liisten makes it defensible.</p>
+    </div>
+    <div class="aud">
+      <div class="a"><div class="t">Accountants &amp; bookkeepers</div><div class="d">Onboarding, structure and source-of-funds, documented from the first meeting.</div></div>
+      <div class="a"><div class="t">Lawyers &amp; conveyancers</div><div class="d">Client and matter risk captured with the evidence behind every rating.</div></div>
+      <div class="a"><div class="t">Financial advisers</div><div class="d">A consistent, reviewable risk picture for every new client engagement.</div></div>
+      <div class="a"><div class="t">Real estate agents</div><div class="d">Buyer and vendor conversations turned into a clean compliance record.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TRUST ===== -->
+<section>
+  <div class="wrap">
+    <div class="sec-head" style="max-width:46em">
+      <div class="eyebrow mono">Preliminary, never presumptuous</div>
+      <h2>Liisten drafts. The practitioner decides.</h2>
+      <p>Every assessment is a starting point for your review — not a compliance decision, and not identity verification, PEP or sanctions screening. You adjust ratings with your own judgment, every change is logged, and your signature is what makes it the firm's assessment. Onshore, evidence-cited, and auditable end to end.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WAITLIST ===== -->
+<section id="waitlist">
+  <div class="wrap">
+    <div class="wait">
+      <div class="eyebrow mono" style="color:#b9c0c9">Early access</div>
+      <h2>Be first to try Liisten.</h2>
+      <p class="sub">We're opening access to a small group of pilot firms. Join the waiting list and we'll be in touch as places open.</p>
+
+      <form class="wl" id="waitform" method="POST" action="https://formspree.io/f/mykrwbka">
+        <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+        <input type="email" name="email" placeholder="Work email" autocomplete="email" required>
+        <select name="firm_type" aria-label="Type of firm" required>
+          <option value="" disabled selected>Type of firm…</option>
+          <option>Accounting / bookkeeping</option>
+          <option>Legal / conveyancing</option>
+          <option>Financial advice</option>
+          <option>Real estate</option>
+          <option>Other</option>
+        </select>
+        <!-- Simple honeypot to deter bots; real submissions leave this empty. -->
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <button class="btn" type="submit">Join the waiting list</button>
+      </form>
+      <div class="wl-note">No spam. We'll only email you about early access. Australian owned, onshore in Sydney.</div>
+      <div class="wl-err" id="waiterr">Something went wrong — email <a href="mailto:hello@liisten.com.au" style="color:#f3b0ab">hello@liisten.com.au</a> and we'll add you.</div>
+
+      <div class="wl-ok" id="waitok">
+        <div class="big">You're on the list. ✓</div>
+        <div class="small">Thanks — we'll be in touch as we open access to pilot firms.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="wrap foot-in">
+    <div>
+      <div class="foot-brand">
+        <svg width="26" height="17" viewBox="0 0 64 40" aria-hidden="true">
+          <rect x="8.5"  y="13.2" width="8" height="13.6" rx="4" fill="#454e58"/>
+          <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#454e58"/>
+          <rect x="34.5" y="3"    width="8" height="34"   rx="4" fill="#454e58"/>
+          <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#454e58"/>
+        </svg>
+        Liisten
+      </div>
+      <div class="foot-tag" style="margin-top:10px">Australian owned · onshore in Sydney</div>
+    </div>
+    <div class="foot-legal">© 2026 Liisten. Preliminary risk assessments are for practitioner review and are not legal or compliance advice.</div>
+  </div>
+</footer>
+
+<script>
+  // Progressive enhancement: submit the waitlist without a page reload and show an
+  // inline confirmation. Falls back to a normal form POST if JS is disabled.
+  (function () {
+    var form = document.getElementById('waitform');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      // If the Formspree endpoint hasn't been set yet, let the normal POST proceed
+      // (which will 404 visibly) rather than pretend success.
+      if (form.action.indexOf('YOUR_FORM_ID') !== -1) return;
+      e.preventDefault();
+      var btn = form.querySelector('button');
+      btn.disabled = true; btn.textContent = 'Joining…';
+      fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } })
+        .then(function (r) {
+          if (r.ok) {
+            form.style.display = 'none';
+            document.querySelector('.wl-note').style.display = 'none';
+            document.getElementById('waiterr').classList.remove('show');
+            document.getElementById('waitok').classList.add('show');
+          } else { throw new Error('bad status'); }
+        })
+        .catch(function () {
+          btn.disabled = false; btn.textContent = 'Join the waiting list';
+          document.getElementById('waiterr').classList.add('show');
+        });
+    });
+  })();
+</script>
+</body>
+</html>
