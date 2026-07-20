@@ -37,7 +37,23 @@
   .nav-cta { font-size:14.5px; font-weight:650; text-decoration:none; background:var(--ink); color:#fff;
     padding:9px 16px; border-radius:999px; transition:transform .12s ease, background .2s; flex:none; }
   .nav-cta:hover { transform:translateY(-1px); background:#000; }
-  .menu-btn { display:none; }
+
+  /* Mobile hamburger + full-screen menu */
+  .nav-toggle { display:none; width:44px; height:44px; padding:0; border:none; background:transparent; cursor:pointer;
+    flex-direction:column; align-items:center; justify-content:center; gap:5px; margin-left:auto; }
+  .nav-toggle span { display:block; width:23px; height:2px; background:var(--ink); border-radius:2px; }
+  .mobile-menu { display:none; position:fixed; inset:0; z-index:100; background:var(--bg); flex-direction:column; padding:0 24px 34px; }
+  .mobile-menu.open { display:flex; }
+  .mm-head { display:flex; align-items:center; justify-content:space-between; height:66px; margin:0 -2px; }
+  .mm-brand { display:flex; align-items:center; gap:11px; font-weight:800; letter-spacing:-.02em; font-size:20px; }
+  .mm-close { width:44px; height:44px; margin-right:-10px; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; color:var(--ink); }
+  .mm-links { display:flex; flex-direction:column; margin-top:14px; border-top:1px solid var(--line); }
+  .mm-links a { text-decoration:none; color:var(--ink); font-size:22px; font-weight:700; letter-spacing:-.02em;
+    padding:22px 2px; border-bottom:1px solid var(--line); }
+  .mm-links a:active { color:var(--muted); }
+  .mm-cta { margin-top:auto; justify-content:center; font-size:17px; }
+  @media (min-width:901px) { .mobile-menu.open { display:none; } }
 
   /* Buttons */
   .btn { display:inline-flex; align-items:center; gap:8px; font-weight:650; text-decoration:none;
@@ -182,6 +198,8 @@
 
   @media (max-width:900px) {
     .nav-links { display:none; }
+    .nav-cta { display:none; }
+    .nav-toggle { display:flex; }
     .hero-grid,.outputs,.moment-grid { grid-template-columns:1fr; gap:36px; }
     .values,.steps,.trust,.app-cards { grid-template-columns:1fr; }
     .trust { grid-template-columns:1fr 1fr; }
@@ -218,8 +236,35 @@
       <a href="/faq.html">FAQ</a>
     </div>
     <a class="nav-cta" href="#waitlist">Join the waiting list</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mm-head">
+    <span class="mm-brand">
+      <svg width="30" height="20" viewBox="0 0 64 40" aria-hidden="true">
+        <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="#454e58"/>
+        <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#454e58"/>
+        <rect x="34.5" y="3" width="8" height="34" rx="4" fill="#454e58"/>
+        <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#454e58"/>
+      </svg>
+      Liisten
+    </span>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#14171b" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="mm-links" aria-label="Primary">
+    <a href="/about.html">About</a>
+    <a href="#get-app">Get the app</a>
+    <a href="/compare.html">Compare notetakers</a>
+    <a href="/austrac.html">AUSTRAC compliance</a>
+    <a href="/faq.html">FAQ</a>
+  </nav>
+  <a class="btn btn-primary mm-cta" href="#waitlist">Join the waiting list</a>
+</div>
 
 <!-- HERO -->
 <header class="hero">
@@ -434,6 +479,17 @@
 </div>
 
 <script>
+  // Full-screen mobile menu.
+  (function () {
+    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu'), c = document.getElementById('mmClose');
+    if (!t || !m) return;
+    function setOpen(o) { m.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; t.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+    t.addEventListener('click', function () { setOpen(true); });
+    if (c) c.addEventListener('click', function () { setOpen(false); });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  })();
+
   // Enlarge the report documents in a lightbox.
   (function () {
     var lb = document.getElementById('lightbox'), img = document.getElementById('lbImg');

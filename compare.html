@@ -88,8 +88,35 @@
       <a href="/faq.html">FAQ</a>
     </div>
     <a class="nav-cta" href="#waitlist">Join the waiting list</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mm-head">
+    <span class="mm-brand">
+      <svg width="30" height="20" viewBox="0 0 64 40" aria-hidden="true">
+        <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="#454e58"/>
+        <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#454e58"/>
+        <rect x="34.5" y="3" width="8" height="34" rx="4" fill="#454e58"/>
+        <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#454e58"/>
+      </svg>
+      Liisten
+    </span>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#14171b" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="mm-links" aria-label="Primary">
+    <a href="/about.html">About</a>
+    <a href="/#get-app">Get the app</a>
+    <a href="/compare.html">Compare notetakers</a>
+    <a href="/austrac.html">AUSTRAC compliance</a>
+    <a href="/faq.html">FAQ</a>
+  </nav>
+  <a class="btn btn-primary mm-cta" href="#waitlist">Join the waiting list</a>
+</div>
 
 <!-- HERO -->
 <header class="page-hero">
@@ -296,6 +323,16 @@
 </footer>
 
 <script>
+  (function () {
+    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu'), c = document.getElementById('mmClose');
+    if (!t || !m) return;
+    function setOpen(o) { m.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; t.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+    t.addEventListener('click', function () { setOpen(true); });
+    if (c) c.addEventListener('click', function () { setOpen(false); });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  })();
+
   (function () {
     var form = document.getElementById('waitform');
     if (!form) return;
