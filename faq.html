@@ -1,0 +1,300 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FAQ — Liisten for Tranche 2 firms</title>
+<meta name="description" content="Answers to common questions about Liisten — the compliance notetaker for Australian Tranche 2 firms. Consent, onshore data, AUSTRAC obligations, accuracy, access and pricing.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Page hero */
+  .page-hero { padding:64px 0 12px; }
+  .page-hero h1 { max-width:12ch; }
+  .page-hero .lead { margin:20px 0 0; max-width:40em; }
+
+  /* FAQ layout */
+  .faq-layout { display:grid; grid-template-columns:200px 1fr; gap:56px; align-items:start; margin-top:8px; }
+  .faq-nav { position:sticky; top:96px; display:flex; flex-direction:column; gap:4px; }
+  .faq-nav a { text-decoration:none; color:var(--muted); font-size:14px; font-weight:550; padding:7px 0; border-left:2px solid transparent; padding-left:14px; margin-left:-16px; transition:color .15s, border-color .15s; }
+  .faq-nav a:hover { color:var(--ink); }
+
+  .faq-cat { scroll-margin-top:90px; }
+  .faq-cat + .faq-cat { margin-top:48px; }
+  .faq-cat h2 { font-size:22px; letter-spacing:-.02em; margin:0 0 6px; }
+  .faq-cat .cat-sub { color:var(--muted); font-size:14.5px; margin:0 0 8px; }
+
+  details.qa { border-top:1px solid var(--line); }
+  details.qa:last-child { border-bottom:1px solid var(--line); }
+  .qa summary { cursor:pointer; list-style:none; display:flex; align-items:center; justify-content:space-between; gap:24px;
+    padding:20px 2px; font-size:17px; font-weight:650; letter-spacing:-.01em; color:var(--ink); }
+  .qa summary::-webkit-details-marker { display:none; }
+  .qa summary:hover { color:#000; }
+  .qa .plus { flex:none; position:relative; width:16px; height:16px; }
+  .qa .plus::before, .qa .plus::after { content:""; position:absolute; background:var(--faint); border-radius:2px; transition:transform .2s ease, opacity .2s ease; }
+  .qa .plus::before { left:0; top:7px; width:16px; height:2px; }
+  .qa .plus::after { left:7px; top:0; width:2px; height:16px; }
+  details[open] > summary .plus::after { transform:rotate(90deg); opacity:0; }
+  details[open] > summary .plus::before { background:var(--ink); }
+  .qa .ans { padding:0 2px 24px; color:var(--ink-soft); font-size:15.5px; line-height:1.62; max-width:66em; }
+  .qa .ans a { color:var(--metal-2); font-weight:600; text-decoration:underline; text-underline-offset:2px; }
+
+  /* Contact callout */
+  .contact { display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+    background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:28px 32px; box-shadow:var(--shadow-sm); margin-top:48px; }
+  .contact div b { font-size:18px; letter-spacing:-.01em; }
+  .contact div p { margin:6px 0 0; color:var(--muted); font-size:14.5px; }
+
+  @media (max-width:900px) {
+    .faq-layout { grid-template-columns:1fr; gap:20px; }
+    .faq-nav { display:none; }
+    .page-hero { padding:44px 0 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="/">
+      <svg width="30" height="20" viewBox="0 0 64 40" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7e8894"/><stop offset=".5" stop-color="#454e58"/><stop offset="1" stop-color="#252c34"/>
+        </linearGradient></defs>
+        <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="url(#g)"/>
+        <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="url(#g)"/>
+        <rect x="34.5" y="3" width="8" height="34" rx="4" fill="url(#g)"/>
+        <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="url(#g)"/>
+      </svg>
+      Liisten
+    </a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/#get-app">Get the app</a>
+      <a href="/compare.html">Compare notetakers</a>
+      <a href="/austrac.html">AUSTRAC compliance</a>
+      <a href="/faq.html" class="active">FAQ</a>
+    </div>
+    <a class="nav-cta" href="#waitlist">Join the waiting list</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow mono">FAQ</div>
+    <h1>Questions, answered.</h1>
+    <p class="lead">What Liisten is, how it handles consent and your clients' data, where it fits your AUSTRAC obligations, and how to get it. Can't find what you need? <a href="mailto:hello@liisten.com.au" style="color:var(--metal-2);font-weight:600">Email us</a>.</p>
+  </div>
+</header>
+
+<!-- FAQ -->
+<section>
+  <div class="wrap">
+    <div class="faq-layout">
+      <!-- side nav -->
+      <nav class="faq-nav" aria-label="FAQ categories">
+        <a href="#basics">The basics</a>
+        <a href="#compliance">Compliance &amp; AUSTRAC</a>
+        <a href="#privacy">Consent &amp; data</a>
+        <a href="#accuracy">Accuracy &amp; output</a>
+        <a href="#access">Access &amp; pricing</a>
+      </nav>
+
+      <!-- questions -->
+      <div>
+        <!-- BASICS -->
+        <div class="faq-cat" id="basics">
+          <h2>The basics</h2>
+          <p class="cat-sub">What Liisten is, and who it's for.</p>
+
+          <details class="qa" open>
+            <summary>What is Liisten?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Liisten is an AI notetaker built for Australian Tranche&nbsp;2 firms. It records a consented, in-person client meeting, transcribes and diarises it onshore, and turns it into an AUSTRAC-mapped preliminary risk assessment and a detailed file note — ready for you to review, adjust with your professional judgement, and sign.</div>
+          </details>
+          <details class="qa">
+            <summary>Who is it for?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">The professions now captured by Australia's AML/CTF reforms — accountants and bookkeepers, lawyers and conveyancers, financial advisers, and real-estate professionals. If you owe customer due diligence on new clients, Liisten is built for you.</div>
+          </details>
+          <details class="qa">
+            <summary>Does it work for in-person meetings?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Yes — that's the point. Most AI notetakers are bots that join a video call. Liisten is built to record the real conversation happening across the desk, from your phone, with consent captured first.</div>
+          </details>
+          <details class="qa">
+            <summary>Do I have to use it for every meeting?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">No. It's designed for client onboarding and other CDD-relevant meetings where you need a risk assessment and a file note. Use it when the conversation is one you need to document.</div>
+          </details>
+        </div>
+
+        <!-- COMPLIANCE -->
+        <div class="faq-cat" id="compliance">
+          <h2>Compliance &amp; AUSTRAC</h2>
+          <p class="cat-sub">Where Liisten fits your obligations — and where it doesn't.</p>
+
+          <details class="qa">
+            <summary>Does Liisten make my firm compliant?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">It does the groundwork — documented, timestamped evidence and a preliminary risk rating mapped to the AUSTRAC factors. But compliance stays your responsibility: you review and sign every assessment, and Liisten doesn't replace your firm's AML/CTF program. <a href="/austrac.html">See how it maps to your obligations →</a></div>
+          </details>
+          <details class="qa">
+            <summary>Is the risk assessment final?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">No — it's preliminary by design. Liisten drafts; your professional judgement decides. Your review and signature are what make it your firm's assessment.</div>
+          </details>
+          <details class="qa">
+            <summary>Does it verify ID or run PEP and sanctions screening?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">No. Liisten flags PEP signals that come up in the conversation, but it isn't a screening service. Formal identity verification and PEP/sanctions screening run through your own provider — AML/CTF screening services such as <a href="https://www.annature.com.au" target="_blank" rel="noopener">Annature</a>. Liisten's job is to tell you when to escalate to those checks.</div>
+          </details>
+          <details class="qa">
+            <summary>How long are the records kept?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Signed assessments and their supporting evidence are retained for seven years, in line with AML/CTF record-keeping obligations.</div>
+          </details>
+        </div>
+
+        <!-- PRIVACY -->
+        <div class="faq-cat" id="privacy">
+          <h2>Consent, privacy &amp; your data</h2>
+          <p class="cat-sub">Consent-first, and onshore from end to end.</p>
+
+          <details class="qa">
+            <summary>Do clients have to consent to being recorded?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Yes. Consent is captured on-screen before any recording starts — Liisten is consent-first by design, so the record of consent sits with the meeting it belongs to.</div>
+          </details>
+          <details class="qa">
+            <summary>Where is my data stored?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Entirely onshore in Australia. Recording, transcription and assessment all happen in Sydney — your client's data never leaves the country.</div>
+          </details>
+          <details class="qa">
+            <summary>Who can see the recordings and reports?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Only your firm. Meetings, transcripts and assessments are scoped to your firm's account and the practitioners in it.</div>
+          </details>
+          <details class="qa">
+            <summary>Is it secure?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Yes — data is encrypted and processed onshore, with access limited to your firm. The AI models that assist with the assessment run within Australian infrastructure, not offshore.</div>
+          </details>
+        </div>
+
+        <!-- ACCURACY -->
+        <div class="faq-cat" id="accuracy">
+          <h2>Accuracy &amp; what you get</h2>
+          <p class="cat-sub">You're always in the loop — and in control.</p>
+
+          <details class="qa">
+            <summary>How accurate is the transcription?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Liisten transcribes and diarises the meeting for you to review — it's a starting point, not the final word. You can read the transcript and correct anything before you sign.</div>
+          </details>
+          <details class="qa">
+            <summary>What if a rating looks wrong?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Every factor shows the verbatim quote and timestamp behind it, so you can check the reasoning in seconds. If you disagree, you override it — your judgement always wins, and the change is recorded against the assessment.</div>
+          </details>
+          <details class="qa">
+            <summary>What do I actually get at the end?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Two documents: a preliminary risk assessment mapped to the AUSTRAC factors, and a detailed conversation file note. Review them, sign, and approve to send — Liisten never sends anything on your behalf without that approval.</div>
+          </details>
+        </div>
+
+        <!-- ACCESS -->
+        <div class="faq-cat" id="access">
+          <h2>Access &amp; pricing</h2>
+          <p class="cat-sub">Where we're up to, and how to get in.</p>
+
+          <details class="qa">
+            <summary>How do I get the app?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Liisten is coming to iPhone first, with Android to follow. <a href="/#get-app">Join the waiting list</a> and we'll let you know the moment access opens.</div>
+          </details>
+          <details class="qa">
+            <summary>What does it cost?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">We're finalising pricing with our first pilot firms and will share the detail as we open access. Reports are credit-based, so you only pay for the assessments you produce. Join the waiting list to be part of it.</div>
+          </details>
+          <details class="qa">
+            <summary>Is there a free trial?<span class="plus" aria-hidden="true"></span></summary>
+            <div class="ans">Pilot firms start with free reports, so you can try Liisten on real meetings before committing to anything.</div>
+          </details>
+        </div>
+
+        <!-- CONTACT -->
+        <div class="contact">
+          <div>
+            <b>Still have a question?</b>
+            <p>We read every message and usually reply the same day.</p>
+          </div>
+          <a class="btn btn-primary" href="mailto:hello@liisten.com.au">Email hello@liisten.com.au</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="band" id="waitlist">
+  <div class="wrap">
+    <div class="wait">
+      <div class="eyebrow mono" style="color:#b9c0c9">Early access</div>
+      <h2>Ready when you are.</h2>
+      <p class="sub">We're opening access to a small group of pilot firms. Join the waiting list and we'll be in touch as places open.</p>
+      <form class="wl" id="waitform" method="POST" action="https://formspree.io/f/mykrwbka">
+        <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+        <input type="email" name="email" placeholder="Work email" autocomplete="email" required>
+        <select name="firm_type" aria-label="Type of firm" required>
+          <option value="" disabled selected>Type of firm…</option>
+          <option>Accounting / bookkeeping</option>
+          <option>Legal / conveyancing</option>
+          <option>Financial advice</option>
+          <option>Real estate</option>
+          <option>Other</option>
+        </select>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <button class="btn" type="submit">Join the waiting list</button>
+      </form>
+      <div class="wl-note">No spam. We'll only email you about early access. Australian owned, onshore in Sydney.</div>
+      <div class="wl-err" id="waiterr">Something went wrong — email <a href="mailto:hello@liisten.com.au" style="color:#f3b0ab">hello@liisten.com.au</a> and we'll add you.</div>
+      <div class="wl-ok" id="waitok"><div class="big">You're on the list. ✓</div><div class="small">Thanks — we'll be in touch as we open access to pilot firms.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <svg width="26" height="17" viewBox="0 0 64 40" aria-hidden="true">
+          <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="#454e58"/>
+          <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#454e58"/>
+          <rect x="34.5" y="3" width="8" height="34" rx="4" fill="#454e58"/>
+          <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#454e58"/>
+        </svg>
+        Liisten
+      </div>
+      <div class="foot-links">
+        <a href="/about.html">About</a>
+        <a href="/#get-app">Get the app</a>
+        <a href="/compare.html">Compare notetakers</a>
+        <a href="/austrac.html">AUSTRAC compliance</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="#waitlist">Waiting list</a>
+      </div>
+    </div>
+    <div class="foot-legal">© 2026 Liisten. Australian owned · onshore in Sydney. Preliminary risk assessments are AI-assisted and for the practitioner's review — they are not legal or compliance advice, nor identity, PEP, or sanctions screening.</div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var form = document.getElementById('waitform');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button');
+      btn.disabled = true; btn.textContent = 'Joining…';
+      fetch(form.action, { method:'POST', body:new FormData(form), headers:{ Accept:'application/json' } })
+        .then(function (r) {
+          if (r.ok) { form.style.display='none'; document.querySelector('.wl-note').style.display='none';
+            document.getElementById('waiterr').classList.remove('show'); document.getElementById('waitok').classList.add('show'); }
+          else { throw new Error('bad'); }
+        })
+        .catch(function () { btn.disabled=false; btn.textContent='Join the waiting list';
+          document.getElementById('waiterr').classList.add('show'); });
+    });
+  })();
+</script>
+</body>
+</html>
