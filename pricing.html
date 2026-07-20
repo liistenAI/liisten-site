@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pricing — Liisten</title>
+<meta name="description" content="Simple, pay-per-report pricing for Liisten. Credits are shared across your whole firm, never expire, and you're only charged when you send. 3 reports free. Prices in AUD, ex GST.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .page-hero { padding:64px 0 12px; }
+  .page-hero h1 { max-width:14ch; }
+  .page-hero .lead { margin:20px 0 0; max-width:40em; }
+
+  /* Promise strip */
+  .promises { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:34px; }
+  .promise { display:flex; gap:11px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px 18px; box-shadow:var(--shadow-sm); }
+  .promise .tick { flex:none; width:22px; height:22px; border-radius:50%; background:#e3f3ea; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .promise b { display:block; font-size:14.5px; letter-spacing:-.01em; }
+  .promise span { color:var(--muted); font-size:12.5px; }
+
+  /* How credits work */
+  .how { display:grid; grid-template-columns:1fr 1fr 1fr; gap:18px; margin-top:34px; }
+  .howc { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:24px; box-shadow:var(--shadow-sm); }
+  .howc .cr { display:inline-flex; align-items:center; gap:8px; font-weight:800; font-size:15px; color:var(--metal-2); }
+  .howc .cr .n { width:26px; height:26px; border-radius:8px; background:var(--ink); color:#fff; display:flex; align-items:center; justify-content:center; font-size:14px; }
+  .howc h3 { font-size:17px; margin:12px 0 6px; letter-spacing:-.02em; }
+  .howc p { color:var(--ink-soft); font-size:14.5px; margin:0; line-height:1.55; }
+
+  /* Tiers */
+  .tiers { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-top:38px; align-items:stretch; }
+  .tier { display:flex; flex-direction:column; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px 24px; box-shadow:var(--shadow-sm); position:relative; }
+  .tier.pop { border-color:var(--ink); box-shadow:var(--shadow); }
+  .tier .badge { position:absolute; top:-11px; left:24px; font-size:11px; font-weight:700; letter-spacing:.05em; text-transform:uppercase; background:var(--ink); color:#fff; padding:4px 10px; border-radius:999px; }
+  .tier .badge.alt { background:var(--low); }
+  .tier .name { font-size:13px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  .tier .credits { font-size:30px; font-weight:850; letter-spacing:-.03em; margin:6px 0 2px; }
+  .tier .credits span { font-size:15px; font-weight:600; color:var(--muted); letter-spacing:0; }
+  .tier .price { font-size:22px; font-weight:800; letter-spacing:-.02em; margin-top:14px; }
+  .tier .price .gst { font-size:13px; font-weight:500; color:var(--muted); }
+  .tier .rate { color:var(--muted); font-size:13px; margin-top:3px; }
+  .tier .save { display:inline-block; margin-top:10px; font-size:12px; font-weight:700; color:var(--low); background:#e3f3ea; padding:3px 9px; border-radius:999px; }
+  .tier .per { margin-top:16px; padding-top:16px; border-top:1px solid var(--line); font-size:13.5px; color:var(--ink-soft); }
+  .tier .per b { color:var(--ink); }
+  .tier .cta { margin-top:auto; }
+  .tier .cta .btn { width:100%; justify-content:center; margin-top:20px; font-size:15px; padding:12px 18px; }
+
+  /* Enterprise strip */
+  .ent { display:grid; grid-template-columns:1fr auto; gap:24px; align-items:center; background:var(--ink); color:#fff; border-radius:18px; padding:28px 32px; margin-top:20px; }
+  .ent h3 { margin:0 0 6px; font-size:20px; letter-spacing:-.02em; color:#fff; }
+  .ent p { margin:0; color:#b9c0c9; font-size:15px; max-width:52em; }
+  .ent .btn { background:#fff; color:var(--ink); white-space:nowrap; }
+  .ent .btn:hover { background:#f0f1f3; }
+
+  /* Annature note */
+  .anchor-note { display:flex; gap:14px; align-items:flex-start; margin-top:22px; font-size:14px; color:var(--ink-soft); background:#fbfaf6; border:1px solid #eee6d4; border-radius:14px; padding:18px 20px; max-width:64em; }
+  .anchor-note svg { flex:none; margin-top:1px; }
+  .anchor-note a { color:var(--metal-2); font-weight:600; text-decoration:underline; text-underline-offset:2px; }
+
+  .gst-line { font-size:12.5px; color:var(--muted); margin-top:16px; }
+
+  /* Pricing FAQ */
+  .pfaq { display:grid; grid-template-columns:1fr 1fr; gap:26px 44px; margin-top:38px; }
+  .pfaq h3 { font-size:16.5px; margin:0 0 7px; letter-spacing:-.01em; }
+  .pfaq p { margin:0; color:var(--ink-soft); font-size:14.5px; line-height:1.58; }
+  .pfaq a { color:var(--metal-2); font-weight:600; }
+
+  @media (max-width:900px) {
+    .promises { grid-template-columns:1fr 1fr; }
+    .how, .tiers, .pfaq { grid-template-columns:1fr; }
+    .ent { grid-template-columns:1fr; text-align:left; gap:16px; }
+    .page-hero { padding:44px 0 4px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="/">
+      <svg width="30" height="20" viewBox="0 0 64 40" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7e8894"/><stop offset=".5" stop-color="#454e58"/><stop offset="1" stop-color="#252c34"/>
+        </linearGradient></defs>
+        <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="url(#g)"/>
+        <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="url(#g)"/>
+        <rect x="34.5" y="3" width="8" height="34" rx="4" fill="url(#g)"/>
+        <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="url(#g)"/>
+      </svg>
+      Liisten
+    </a>
+    <div class="nav-links">
+      <a href="/about.html">About</a>
+      <a href="/#get-app">Get the app</a>
+      <a href="/compare.html">Compare notetakers</a>
+      <a href="/pricing.html" class="active">Pricing</a>
+      <a href="/austrac.html">AUSTRAC compliance</a>
+      <a href="/faq.html">FAQ</a>
+    </div>
+    <a class="nav-cta" href="#waitlist">Join the waiting list</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mm-head">
+    <span class="mm-brand">
+      <svg width="30" height="20" viewBox="0 0 64 40" aria-hidden="true">
+        <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="#454e58"/>
+        <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#454e58"/>
+        <rect x="34.5" y="3" width="8" height="34" rx="4" fill="#454e58"/>
+        <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#454e58"/>
+      </svg>
+      Liisten
+    </span>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#14171b" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="mm-links" aria-label="Primary">
+    <a href="/about.html">About</a>
+    <a href="/#get-app">Get the app</a>
+    <a href="/compare.html">Compare notetakers</a>
+    <a href="/pricing.html">Pricing</a>
+    <a href="/austrac.html">AUSTRAC compliance</a>
+    <a href="/faq.html">FAQ</a>
+  </nav>
+  <a class="btn btn-primary mm-cta" href="#waitlist">Join the waiting list</a>
+</div>
+
+<!-- HERO -->
+<header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow mono">Pricing</div>
+    <h1>Pay per report. Nothing you don't use.</h1>
+    <p class="lead">No seats to buy, no monthly lock-in. You buy credits, your whole firm shares them, and you're only charged the moment you approve and send a report. Recording and reviewing are always free — start with three reports on us.</p>
+  </div>
+</header>
+
+<!-- PROMISES -->
+<section class="warm">
+  <div class="wrap">
+    <div class="promises">
+      <div class="promise">
+        <span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-11" stroke="#1b7f4d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><b>3 reports free</b><span>Recorded, reviewed, fully visible</span></div>
+      </div>
+      <div class="promise">
+        <span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-11" stroke="#1b7f4d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><b>No lock-in</b><span>Credits never expire</span></div>
+      </div>
+      <div class="promise">
+        <span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-11" stroke="#1b7f4d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><b>Free unlimited team members</b><span>One shared credit pool</span></div>
+      </div>
+      <div class="promise">
+        <span class="tick" aria-hidden="true"><svg width="12" height="12" viewBox="0 0 24 24" fill="none"><path d="M5 12l4 4 10-11" stroke="#1b7f4d" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        <div><b>Only charged on send</b><span>Never for recording or re-sending</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW CREDITS WORK -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">How it works</div>
+      <h2>One simple unit: the credit.</h2>
+      <p>Reports cost credits. That's the whole model — buy a pack, and spend it as you go.</p>
+    </div>
+    <div class="how">
+      <div class="howc">
+        <div class="cr"><span class="n">1</span> credit</div>
+        <h3>A summary / file note</h3>
+        <p>A detailed, diarised record of the meeting — the write-up you'd otherwise do by hand.</p>
+      </div>
+      <div class="howc">
+        <div class="cr"><span class="n">2</span> credits</div>
+        <h3>A full onboarding report</h3>
+        <p>The file note <b>plus</b> the AUSTRAC-mapped preliminary risk assessment, evidence-cited and ready to sign.</p>
+      </div>
+      <div class="howc">
+        <div class="cr"><span class="n" style="background:var(--low)">∞</span> firm</div>
+        <h3>Shared across everyone</h3>
+        <p>Credits sit in one firm-wide pool. Add as many practitioners as you like — seats are always free.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIERS -->
+<section class="warm">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">Credit packs</div>
+      <h2>Buy once. The more you buy, the less each report costs.</h2>
+      <p>Every pack works the same way — the only difference is the price per credit.</p>
+    </div>
+
+    <div class="tiers">
+      <div class="tier">
+        <div class="name">Starter</div>
+        <div class="credits">10 <span>credits</span></div>
+        <div class="price">A$70 <span class="gst">+ GST</span></div>
+        <div class="rate">A$7.00 / credit</div>
+        <div class="per">≈ <b>A$14</b> per onboarding report<br>≈ A$7 per summary</div>
+        <div class="cta"><a class="btn btn-ghost" href="#waitlist">Get started</a></div>
+      </div>
+
+      <div class="tier pop">
+        <div class="badge">Most popular</div>
+        <div class="name">Practice</div>
+        <div class="credits">30 <span>credits</span></div>
+        <div class="price">A$180 <span class="gst">+ GST</span></div>
+        <div class="rate">A$6.00 / credit</div>
+        <div class="save">Save 14%</div>
+        <div class="per">≈ <b>A$12</b> per onboarding report<br>≈ A$6 per summary</div>
+        <div class="cta"><a class="btn btn-primary" href="#waitlist">Get started</a></div>
+      </div>
+
+      <div class="tier">
+        <div class="name">Firm</div>
+        <div class="credits">75 <span>credits</span></div>
+        <div class="price">A$375 <span class="gst">+ GST</span></div>
+        <div class="rate">A$5.00 / credit</div>
+        <div class="save">Save 29%</div>
+        <div class="per">≈ <b>A$10</b> per onboarding report<br>≈ A$5 per summary</div>
+        <div class="cta"><a class="btn btn-ghost" href="#waitlist">Get started</a></div>
+      </div>
+
+      <div class="tier">
+        <div class="badge alt">Best value</div>
+        <div class="name">Volume</div>
+        <div class="credits">200 <span>credits</span></div>
+        <div class="price">A$800 <span class="gst">+ GST</span></div>
+        <div class="rate">A$4.00 / credit</div>
+        <div class="save">Save 43%</div>
+        <div class="per">≈ <b>A$8</b> per onboarding report<br>≈ A$4 per summary</div>
+        <div class="cta"><a class="btn btn-ghost" href="#waitlist">Get started</a></div>
+      </div>
+    </div>
+
+    <div class="ent">
+      <div>
+        <h3>Doing 100+ reports a month?</h3>
+        <p>We'll tailor volume pricing to your firm — talk to us about a plan that fits your onboarding load.</p>
+      </div>
+      <a class="btn" href="mailto:hello@liisten.com.au?subject=Liisten%20volume%20pricing">Talk to us</a>
+    </div>
+
+    <div class="anchor-note">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="#b26a00" stroke-width="1.6"/><path d="M12 8v5" stroke="#b26a00" stroke-width="1.8" stroke-linecap="round"/><circle cx="12" cy="16" r="1.1" fill="#b26a00"/></svg>
+      <div>Liisten works alongside your ID and AML/CTF screening (e.g. <a href="https://www.annature.com.au" target="_blank" rel="noopener">Annature</a>). For roughly the price of a complete ID + AML check, you also get the documented, timestamped risk assessment and file note from the meeting itself.</div>
+    </div>
+
+    <div class="gst-line">All prices in Australian dollars and exclude GST. Paid securely by card through our billing portal — no lock-in, cancel any time by simply not buying more.</div>
+  </div>
+</section>
+
+<!-- PRICING FAQ -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">Good to know</div>
+      <h2>Pricing questions, answered.</h2>
+    </div>
+    <div class="pfaq">
+      <div>
+        <h3>When am I charged?</h3>
+        <p>Only when you approve and send a report. Recording and reviewing are always free — you'll never lose a meeting because a balance ran out, and re-sending never costs extra.</p>
+      </div>
+      <div>
+        <h3>Do credits expire?</h3>
+        <p>No. Buy a pack once and use it whenever. There are no monthly fees and no lock-in contracts.</p>
+      </div>
+      <div>
+        <h3>Do I pay per person?</h3>
+        <p>No. Credits are shared across your whole firm, and you can add as many practitioners as you like at no extra cost.</p>
+      </div>
+      <div>
+        <h3>Summary vs onboarding report?</h3>
+        <p>A summary / file note costs 1 credit. A full onboarding report — the file note plus the AUSTRAC-mapped risk assessment — costs 2.</p>
+      </div>
+      <div>
+        <h3>Is there really a free trial?</h3>
+        <p>Yes — your first 3 reports are free. They're recorded, reviewed and fully visible in the app, so you can see exactly what you get before you buy a credit.</p>
+      </div>
+      <div>
+        <h3>How do I pay?</h3>
+        <p>Securely by card through our billing portal, a normal business purchase. Prices are in AUD and exclude GST. <a href="mailto:hello@liisten.com.au">Questions? Email us.</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="band" id="waitlist">
+  <div class="wrap">
+    <div class="wait">
+      <div class="eyebrow mono" style="color:#b9c0c9">Early access</div>
+      <h2>Start with 3 free reports.</h2>
+      <p class="sub">We're opening access to a small group of pilot firms. Join the waiting list and we'll be in touch as places open.</p>
+      <form class="wl" id="waitform" method="POST" action="https://formspree.io/f/mykrwbka">
+        <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+        <input type="email" name="email" placeholder="Work email" autocomplete="email" required>
+        <select name="firm_type" aria-label="Type of firm" required>
+          <option value="" disabled selected>Type of firm…</option>
+          <option>Accounting / bookkeeping</option>
+          <option>Legal / conveyancing</option>
+          <option>Financial advice</option>
+          <option>Real estate</option>
+          <option>Other</option>
+        </select>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <button class="btn" type="submit">Join the waiting list</button>
+      </form>
+      <div class="wl-note">No spam. We'll only email you about early access. Australian owned, onshore in Sydney.</div>
+      <div class="wl-err" id="waiterr">Something went wrong — email <a href="mailto:hello@liisten.com.au" style="color:#f3b0ab">hello@liisten.com.au</a> and we'll add you.</div>
+      <div class="wl-ok" id="waitok"><div class="big">You're on the list. ✓</div><div class="small">Thanks — we'll be in touch as we open access to pilot firms.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <svg width="26" height="17" viewBox="0 0 64 40" aria-hidden="true">
+          <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="#454e58"/>
+          <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#454e58"/>
+          <rect x="34.5" y="3" width="8" height="34" rx="4" fill="#454e58"/>
+          <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#454e58"/>
+        </svg>
+        Liisten
+      </div>
+      <div class="foot-links">
+        <a href="/about.html">About</a>
+        <a href="/#get-app">Get the app</a>
+        <a href="/compare.html">Compare notetakers</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/austrac.html">AUSTRAC compliance</a>
+        <a href="/faq.html">FAQ</a>
+        <a href="#waitlist">Waiting list</a>
+      </div>
+    </div>
+    <div class="foot-legal">© 2026 Liisten. Australian owned · onshore in Sydney. Preliminary risk assessments are AI-assisted and for the practitioner's review — they are not legal or compliance advice, nor identity, PEP, or sanctions screening.</div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu'), c = document.getElementById('mmClose');
+    if (!t || !m) return;
+    function setOpen(o) { m.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; t.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+    t.addEventListener('click', function () { setOpen(true); });
+    if (c) c.addEventListener('click', function () { setOpen(false); });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  })();
+
+  (function () {
+    var form = document.getElementById('waitform');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button');
+      btn.disabled = true; btn.textContent = 'Joining…';
+      fetch(form.action, { method:'POST', body:new FormData(form), headers:{ Accept:'application/json' } })
+        .then(function (r) {
+          if (r.ok) { form.style.display='none'; document.querySelector('.wl-note').style.display='none';
+            document.getElementById('waiterr').classList.remove('show'); document.getElementById('waitok').classList.add('show'); }
+          else { throw new Error('bad'); }
+        })
+        .catch(function () { btn.disabled=false; btn.textContent='Join the waiting list';
+          document.getElementById('waiterr').classList.add('show'); });
+    });
+  })();
+</script>
+</body>
+</html>
