@@ -18,8 +18,8 @@ body { margin:0; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,R
 a { color:inherit; }
 img { max-width:100%; }
 
-/* Nav */
-nav { position:sticky; top:0; z-index:50; background:rgba(245,246,248,.82);
+/* Nav — scope to the site header only, so nested <nav>s (faq-nav, mm-links) don't inherit it */
+body > nav { position:sticky; top:0; z-index:50; background:rgba(245,246,248,.82);
   backdrop-filter:saturate(180%) blur(12px); border-bottom:1px solid var(--line); }
 .nav-in { display:flex; align-items:center; justify-content:space-between; height:66px; gap:20px; }
 .brand { display:flex; align-items:center; gap:11px; font-weight:800; letter-spacing:-.02em; font-size:20px; flex:none; text-decoration:none; color:var(--ink); }
