@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AML/CTF compliance records for accountants & bookkeepers — Liisten</title>
+<meta name="description" content="From 1 July 2026, accountants providing designated services are AUSTRAC reporting entities. Liisten turns your consented onboarding meeting into a file note and an AUSTRAC-mapped preliminary risk assessment, tuned to accounting engagements.">
+<link rel="canonical" href="https://liisten.com.au/accountants.html">
+<meta property="og:title" content="AML/CTF compliance records for accountants & bookkeepers — Liisten">
+<meta property="og:description" content="From 1 July 2026, accountants providing designated services are AUSTRAC reporting entities. Liisten turns your consented onboarding meeting into a file note and an AUSTRAC-mapped preliminary risk assessment, tuned to accounting engagements.">
+<meta property="og:url" content="https://liisten.com.au/accountants.html">
+<meta property="og:type" content="website">
+<link rel="stylesheet" href="styles.css">
+<style>
+  .page-hero { padding:96px 0 72px; }
+  .page-hero h1 { max-width:19ch; }
+  .page-hero .lead { margin:20px 0 0; max-width:44em; }
+
+  /* Obligations */
+  .oblig { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:34px; }
+  .ob { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; box-shadow:var(--shadow-sm); }
+  .ob b { display:block; font-size:15.5px; letter-spacing:-.01em; margin-bottom:5px; }
+  .ob p { margin:0; color:var(--ink-soft); font-size:14px; line-height:1.55; }
+  .oblig-note { color:var(--muted); font-size:14px; margin-top:18px; max-width:50em; }
+
+  /* Steps */
+  .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:38px; }
+  .step { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:26px 24px; box-shadow:var(--shadow-sm); }
+  .step .n { font-family:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace; color:var(--muted); font-size:13px; }
+  .step h3 { margin:10px 0 8px; font-size:17.5px; letter-spacing:-.015em; }
+  .step p { margin:0; color:var(--ink-soft); font-size:14.5px; line-height:1.6; }
+
+  /* What Liisten listens for */
+  .listen { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:38px; }
+  .listen-col { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:28px 26px; box-shadow:var(--shadow-sm); }
+  .listen-col h3 { margin:0 0 12px; font-size:18px; letter-spacing:-.02em; }
+  .listen-col ul { margin:0; padding:0; list-style:none; }
+  .listen-col li { padding:9px 0 9px 26px; position:relative; color:var(--ink-soft); font-size:14.5px; line-height:1.55; border-top:1px solid var(--line); }
+  .listen-col li:first-child { border-top:none; }
+  .listen-col li::before { content:"—"; position:absolute; left:2px; color:var(--faint); }
+
+  /* Honesty note */
+  .not-note { border-left:3px solid var(--ink); padding:6px 0 6px 24px; margin-top:44px; max-width:48em; }
+  .not-note p { margin:0; color:var(--ink-soft); font-size:15.5px; line-height:1.62; }
+
+  @media (max-width:900px) {
+    .oblig, .steps, .listen { grid-template-columns:1fr; }
+    .page-hero { padding:60px 0 44px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="/">
+      <svg width="30" height="20" viewBox="0 0 64 40" aria-hidden="true">
+        <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="#454e58"/>
+        <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#454e58"/>
+        <rect x="34.5" y="3" width="8" height="34" rx="4" fill="#454e58"/>
+        <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#454e58"/>
+      </svg>
+      Liisten
+    </a>
+    <div class="nav-links">
+      <div class="nav-drop">
+        <button class="nav-drop-btn active" type="button" aria-haspopup="true" aria-expanded="false">Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-drop-menu">
+          <div class="nav-drop-card">
+            <a href="/accountants.html">Accountants &amp; bookkeepers</a>
+            <a href="/financial-advisers.html">Financial advisers</a>
+            <a href="/lawyers.html">Lawyers &amp; conveyancers</a>
+            <a href="/real-estate.html">Real estate agents</a>
+          </div>
+        </div>
+      </div>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/austrac.html">AUSTRAC compliance</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/about.html">About</a>
+    </div>
+    <a class="nav-cta" href="#waitlist">Join the waiting list</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mm-head">
+    <span class="mm-brand">
+      <svg width="30" height="20" viewBox="0 0 64 40" aria-hidden="true">
+        <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="#454e58"/>
+        <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#454e58"/>
+        <rect x="34.5" y="3" width="8" height="34" rx="4" fill="#454e58"/>
+        <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#454e58"/>
+      </svg>
+      Liisten
+    </span>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#14171b" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="mm-links" aria-label="Primary">
+    <div class="mm-group">Industries</div>
+    <a class="mm-sub" href="/accountants.html">Accountants &amp; bookkeepers</a>
+    <a class="mm-sub" href="/financial-advisers.html">Financial advisers</a>
+    <a class="mm-sub" href="/lawyers.html">Lawyers &amp; conveyancers</a>
+    <a class="mm-sub" href="/real-estate.html">Real estate agents</a>
+    <div class="mm-group">Liisten</div>
+    <a href="/pricing.html">Pricing</a>
+    <a href="/austrac.html">AUSTRAC compliance</a>
+    <a href="/compare.html">Compare notetakers</a>
+    <a href="/#get-app">Get the app</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/about.html">About</a>
+  </nav>
+  <a class="btn btn-primary mm-cta" href="#waitlist">Join the waiting list</a>
+</div>
+
+<!-- HERO -->
+<header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow mono">For accountants &amp; bookkeepers · Tranche 2</div>
+    <h1>Client due diligence, drafted from the onboarding meeting.</h1>
+    <p class="lead">From 1 July 2026, accounting practices providing certain services — structuring, transactions, acting for clients — are AUSTRAC reporting entities. A careful onboarding conversation already surfaces most of what customer due diligence asks. Liisten records it, with consent, and drafts the record: a detailed file note and an AUSTRAC-mapped preliminary risk assessment, tuned to accounting engagements.</p>
+  </div>
+</header>
+
+<!-- OBLIGATIONS -->
+<section class="warm">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">The obligation</div>
+      <h2>Which accounting work is captured.</h2>
+      <p>The regime is service-based, not firm-based: obligations attach when you provide a designated service in the course of business. For accountants, the professional services include:</p>
+    </div>
+    <div class="oblig">
+      <div class="ob"><b>Transactions for clients</b><p>Assisting clients to buy, sell or transfer real estate, entities or legal arrangements, and equity or debt financing.</p></div>
+      <div class="ob"><b>Creating structures</b><p>Assisting clients to create or restructure companies, trusts and other legal arrangements — and selling or transferring shelf companies.</p></div>
+      <div class="ob"><b>Acting for entities</b><p>Acting as — or arranging for someone to act as — a director, secretary, trustee, partner or nominee shareholder.</p></div>
+      <div class="ob"><b>Holding client money</b><p>Receiving, holding or managing client money, accounts or property as part of a designated service, and providing registered-office addresses.</p></div>
+    </div>
+    <p class="oblig-note">Everyday compliance work on its own — tax returns, BAS, bookkeeping data entry — is generally not a designated service. If your practice provides any of the services above, you enrol with AUSTRAC and run customer due diligence under your own AML/CTF program.</p>
+  </div>
+</section>
+
+<!-- HOW LIISTEN FITS -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">How Liisten fits</div>
+      <h2>The meeting you were having anyway, turned into the record.</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="n">01</div>
+        <h3>Record with consent</h3>
+        <p>Open the Liisten app in the meeting. Consent is read aloud and time-stamped before recording starts — then just have the conversation you normally have.</p>
+      </div>
+      <div class="step">
+        <div class="n">02</div>
+        <h3>Get the record</h3>
+        <p>A detailed file note of what was discussed, plus a preliminary risk assessment mapped to the AUSTRAC factors — client type, structure complexity, cash intensity, geography, delivery channel, source of funds, PEP indicators — every rating tied to a quote and timestamp.</p>
+      </div>
+      <div class="step">
+        <div class="n">03</div>
+        <h3>Review, resolve, sign</h3>
+        <p>Anything the conversation didn't cover becomes an open item to follow up. You adjust ratings with your professional judgement, resolve the gaps, and sign. The signed record is the firm's — kept for your seven-year retention.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT LIISTEN LISTENS FOR -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">Tuned to your sector</div>
+      <h2>What Liisten listens for in an accounting onboarding.</h2>
+      <p>The analysis is sector-aware: it knows what a new-client meeting should cover, flags what wasn't discussed as open items, and rates only what the conversation actually supports — every rating tied to a verbatim quote and timestamp.</p>
+    </div>
+    <div class="listen">
+      <div class="listen-col">
+        <h3>Expected conversation topics</h3>
+        <ul>
+          <li>Who the client is and the nature of their business or occupation</li>
+          <li>Beneficial owners behind any company, trust or partnership — and why the structure exists</li>
+          <li>Source of funds and source of wealth</li>
+          <li>Cash handling in the business and expected transaction volumes</li>
+          <li>Cross-border links: offshore accounts, entities, suppliers or residency</li>
+          <li>The purpose of the engagement and the services sought</li>
+        </ul>
+      </div>
+      <div class="listen-col">
+        <h3>Sector indicators it watches for</h3>
+        <ul>
+          <li>Structures with no clear commercial rationale</li>
+          <li>Wealth or income inconsistent with the stated business</li>
+          <li>Heavy or unexplained cash intensity; reluctance to use banking channels</li>
+          <li>Unexplained offshore accounts, entities or fund flows</li>
+          <li>Reluctance to identify beneficial owners or explain source of funds</li>
+          <li>Requests that appear designed to obscure ownership or the money trail</li>
+        </ul>
+      </div>
+    </div>
+    <div class="not-note">
+      <p><b>Liisten drafts; you decide.</b> The output is a preliminary assessment for your review and signature — not legal or compliance advice, and not identity verification, PEP or sanctions screening. Those run through your existing provider, and your AML/CTF program remains your own.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WAITLIST -->
+<section class="band" id="waitlist">
+  <div class="wrap">
+    <div class="wait">
+      <div class="eyebrow mono" style="color:#b9c0c9">Early access</div>
+      <h2>Come build it with us.</h2>
+      <p class="sub">We're opening access to a small group of pilot firms and shaping Liisten around how they really work. Join the waiting list and we'll be in touch as places open.</p>
+      <form class="wl" id="waitform" method="POST" action="https://formspree.io/f/mykrwbka">
+        <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
+        <input type="email" name="email" placeholder="Work email" autocomplete="email" required>
+        <select name="firm_type" aria-label="Type of firm" required>
+          <option value="" disabled>Type of firm…</option>
+          <option selected>Accounting / bookkeeping</option>
+          <option>Legal / conveyancing</option>
+          <option>Financial advice</option>
+          <option>Real estate</option>
+          <option>Other</option>
+        </select>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <button class="btn" type="submit">Join the waiting list</button>
+      </form>
+      <div class="wl-note">No spam. We'll only email you about early access. Australian owned, onshore in Sydney.</div>
+      <div class="wl-err" id="waiterr">Something went wrong — email <a href="mailto:hello@liisten.com.au" style="color:#f3b0ab">hello@liisten.com.au</a> and we'll add you.</div>
+      <div class="wl-ok" id="waitok"><div class="big">You're on the list. ✓</div><div class="small">Thanks — we'll be in touch as we open access to pilot firms.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <svg width="30" height="20" viewBox="0 0 64 40" aria-hidden="true">
+        <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="#454e58"/>
+        <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#454e58"/>
+        <rect x="34.5" y="3" width="8" height="34" rx="4" fill="#454e58"/>
+        <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#454e58"/>
+      </svg>
+        Liisten
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <div class="foot-h">Product</div>
+          <a href="/#get-app">Get the app</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/compare.html">Compare notetakers</a>
+          <a href="/austrac.html">AUSTRAC compliance</a>
+          <a href="/faq.html">FAQ</a>
+        </div>
+        <div class="foot-col">
+          <div class="foot-h">Industries</div>
+          <a href="/accountants.html">Accountants &amp; bookkeepers</a>
+          <a href="/financial-advisers.html">Financial advisers</a>
+          <a href="/lawyers.html">Lawyers &amp; conveyancers</a>
+          <a href="/real-estate.html">Real estate agents</a>
+        </div>
+        <div class="foot-col">
+          <div class="foot-h">Company</div>
+          <a href="/about.html">About</a>
+          <a href="#waitlist">Waiting list</a>
+          <a href="mailto:hello@liisten.com.au">hello@liisten.com.au</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-legal">© 2026 Liisten. Australian owned · onshore in Sydney. Preliminary risk assessments are AI-assisted and for the practitioner's review — they are not legal or compliance advice, nor identity, PEP, or sanctions screening.</div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu'), c = document.getElementById('mmClose');
+    if (!t || !m) return;
+    function setOpen(o) { m.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; t.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+    t.addEventListener('click', function () { setOpen(true); });
+    if (c) c.addEventListener('click', function () { setOpen(false); });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  })();
+
+  (function () {
+    var form = document.getElementById('waitform');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button');
+      btn.disabled = true; btn.textContent = 'Joining…';
+      fetch(form.action, { method:'POST', body:new FormData(form), headers:{ Accept:'application/json' } })
+        .then(function (r) {
+          if (r.ok) { form.style.display='none'; document.querySelector('.wl-note').style.display='none';
+            document.getElementById('waiterr').classList.remove('show'); document.getElementById('waitok').classList.add('show'); }
+          else { throw new Error(); }
+        })
+        .catch(function () { btn.disabled = false; btn.textContent = 'Join the waiting list';
+          document.getElementById('waiterr').classList.add('show'); });
+    });
+  })();
+
+  (function () {
+    document.querySelectorAll('.nav-drop').forEach(function (d) {
+      var b = d.querySelector('.nav-drop-btn');
+      if (!b) return;
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        d.classList.toggle('open');
+        b.setAttribute('aria-expanded', d.classList.contains('open') ? 'true' : 'false');
+      });
+    });
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('.nav-drop.open').forEach(function (d) {
+        if (!d.contains(e.target)) d.classList.remove('open');
+      });
+    });
+  })();
+</script>
+</body>
+</html>

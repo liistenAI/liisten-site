@@ -233,6 +233,36 @@
     .desk .phone { width:46%; }
   }
   @media (max-width:560px){ .trust{ grid-template-columns:1fr; } }
+
+  /* Industries ("who it's for") cards */
+  .ind-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:38px; }
+  .ind-card { display:block; background:var(--card); border:1px solid var(--line); border-radius:var(--radius);
+    padding:24px 22px; text-decoration:none; box-shadow:var(--shadow-sm); transition:transform .12s ease, box-shadow .2s; }
+  .ind-card:hover { transform:translateY(-2px); box-shadow:var(--shadow); }
+  .ind-card h3 { margin:0 0 8px; font-size:17px; letter-spacing:-.015em; color:var(--ink); }
+  .ind-card p { margin:0 0 14px; color:var(--ink-soft); font-size:14px; line-height:1.55; }
+  .ind-more { font-size:13.5px; font-weight:650; color:var(--ink); }
+  @media (max-width:900px) { .ind-grid { grid-template-columns:1fr 1fr; } }
+  @media (max-width:560px) { .ind-grid { grid-template-columns:1fr; } }
+
+  .nav-drop { position:relative; }
+  .nav-drop-btn { display:inline-flex; align-items:center; gap:6px; background:none; border:none; padding:0; cursor:pointer;
+    font:inherit; font-size:14.5px; font-weight:550; color:var(--ink-soft); white-space:nowrap; }
+  .nav-drop-btn:hover, .nav-drop.open .nav-drop-btn { color:var(--ink); }
+  .nav-drop-btn svg { transition:transform .15s ease; }
+  .nav-drop:hover .nav-drop-btn svg, .nav-drop.open .nav-drop-btn svg { transform:rotate(180deg); }
+  .nav-drop-menu { position:absolute; top:100%; left:50%; transform:translateX(-50%); padding-top:12px; display:none; z-index:60; }
+  .nav-drop:hover .nav-drop-menu, .nav-drop:focus-within .nav-drop-menu, .nav-drop.open .nav-drop-menu { display:block; }
+  .nav-drop-card { background:#fff; border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); padding:8px; min-width:250px; }
+  .nav-drop-card a { display:block; padding:10px 14px; border-radius:9px; text-decoration:none; font-size:14.5px; font-weight:550; color:var(--ink-soft); white-space:nowrap; }
+  .nav-drop-card a:hover { background:var(--bg); color:var(--ink); }
+  .mm-group { padding:20px 2px 6px; font-size:12px; letter-spacing:.14em; text-transform:uppercase; color:var(--muted); font-weight:600; }
+  
+  .foot-cols { display:flex; gap:56px; flex-wrap:wrap; }
+  .foot-col { display:flex; flex-direction:column; gap:10px; min-width:150px; }
+  .foot-col a { text-decoration:none; color:var(--ink-soft); font-size:14px; font-weight:500; }
+  .foot-col a:hover { color:var(--ink); }
+  .foot-h { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:650; margin-bottom:2px; }
 </style>
 </head>
 <body>
@@ -253,12 +283,21 @@
       Liisten
     </a>
     <div class="nav-links">
-      <a href="/about.html">About</a>
-      <a href="#get-app">Get the app</a>
-      <a href="/compare.html">Compare notetakers</a>
+      <div class="nav-drop">
+        <button class="nav-drop-btn" type="button" aria-haspopup="true" aria-expanded="false">Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-drop-menu">
+          <div class="nav-drop-card">
+            <a href="/accountants.html">Accountants &amp; bookkeepers</a>
+            <a href="/financial-advisers.html">Financial advisers</a>
+            <a href="/lawyers.html">Lawyers &amp; conveyancers</a>
+            <a href="/real-estate.html">Real estate agents</a>
+          </div>
+        </div>
+      </div>
       <a href="/pricing.html">Pricing</a>
       <a href="/austrac.html">AUSTRAC compliance</a>
       <a href="/faq.html">FAQ</a>
+      <a href="/about.html">About</a>
     </div>
     <a class="nav-cta" href="#waitlist">Join the waiting list</a>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -282,12 +321,18 @@
     </button>
   </div>
   <nav class="mm-links" aria-label="Primary">
-    <a href="/about.html">About</a>
-    <a href="#get-app">Get the app</a>
-    <a href="/compare.html">Compare notetakers</a>
+    <div class="mm-group">Industries</div>
+    <a class="mm-sub" href="/accountants.html">Accountants &amp; bookkeepers</a>
+    <a class="mm-sub" href="/financial-advisers.html">Financial advisers</a>
+    <a class="mm-sub" href="/lawyers.html">Lawyers &amp; conveyancers</a>
+    <a class="mm-sub" href="/real-estate.html">Real estate agents</a>
+    <div class="mm-group">Liisten</div>
     <a href="/pricing.html">Pricing</a>
     <a href="/austrac.html">AUSTRAC compliance</a>
+    <a href="/compare.html">Compare notetakers</a>
+    <a href="/#get-app">Get the app</a>
     <a href="/faq.html">FAQ</a>
+    <a href="/about.html">About</a>
   </nav>
   <a class="btn btn-primary mm-cta" href="#waitlist">Join the waiting list</a>
 </div>
@@ -346,6 +391,39 @@
 </section>
 
 <!-- OUTPUTS -->
+<!-- INDUSTRIES -->
+<section id="industries">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">Who it’s for</div>
+      <h2>Built for the professions Tranche&nbsp;2 brings into scope.</h2>
+      <p>Liisten tunes its analysis to your profession — what an onboarding conversation should cover, and the AUSTRAC indicators that matter in your sector.</p>
+    </div>
+    <div class="ind-grid">
+      <a class="ind-card" href="/accountants.html">
+        <h3>Accountants &amp; bookkeepers</h3>
+        <p>Structures, source of funds and cash intensity — documented from the onboarding conversation you already run.</p>
+        <span class="ind-more">For accountants →</span>
+      </a>
+      <a class="ind-card" href="/financial-advisers.html">
+        <h3>Financial advisers</h3>
+        <p>The fact-find already covers CDD — the investing entity, source of wealth, third parties. Liisten writes it down.</p>
+        <span class="ind-more">For advisers →</span>
+      </a>
+      <a class="ind-card" href="/lawyers.html">
+        <h3>Lawyers &amp; conveyancers</h3>
+        <p>Matter intake documented to AML/CTF standard — structures, instructions, and funds through trust.</p>
+        <span class="ind-more">For legal practices →</span>
+      </a>
+      <a class="ind-card" href="/real-estate.html">
+        <h3>Real estate agents</h3>
+        <p>Vendor and buyer are both customers from 1 July 2026. Document the meeting you were having anyway.</p>
+        <span class="ind-more">For agents →</span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <section id="outputs">
   <div class="wrap">
     <div class="sec-head">
@@ -500,14 +578,28 @@
         </svg>
         Liisten
       </div>
-      <div class="foot-links">
-        <a href="/about.html">About</a>
-        <a href="#get-app">Get the app</a>
-        <a href="/compare.html">Compare notetakers</a>
-        <a href="/pricing.html">Pricing</a>
-        <a href="/austrac.html">AUSTRAC compliance</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="#waitlist">Waiting list</a>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <div class="foot-h">Product</div>
+          <a href="/#get-app">Get the app</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/compare.html">Compare notetakers</a>
+          <a href="/austrac.html">AUSTRAC compliance</a>
+          <a href="/faq.html">FAQ</a>
+        </div>
+        <div class="foot-col">
+          <div class="foot-h">Industries</div>
+          <a href="/accountants.html">Accountants &amp; bookkeepers</a>
+          <a href="/financial-advisers.html">Financial advisers</a>
+          <a href="/lawyers.html">Lawyers &amp; conveyancers</a>
+          <a href="/real-estate.html">Real estate agents</a>
+        </div>
+        <div class="foot-col">
+          <div class="foot-h">Company</div>
+          <a href="/about.html">About</a>
+          <a href="#waitlist">Waiting list</a>
+          <a href="mailto:hello@liisten.com.au">hello@liisten.com.au</a>
+        </div>
       </div>
     </div>
     <div class="foot-legal">© 2026 Liisten. Australian owned · onshore in Sydney. Preliminary risk assessments are AI-assisted and for the practitioner's review — they are not legal or compliance advice, nor identity, PEP, or sanctions screening.</div>
@@ -564,6 +656,25 @@
         })
         .catch(function () { btn.disabled=false; btn.textContent='Join the waiting list';
           document.getElementById('waiterr').classList.add('show'); });
+    });
+  })();
+</script>
+<script>
+  // Industries dropdown: hover works on desktop; this adds tap/click toggle for touch.
+  (function () {
+    document.querySelectorAll('.nav-drop').forEach(function (d) {
+      var b = d.querySelector('.nav-drop-btn');
+      if (!b) return;
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        d.classList.toggle('open');
+        b.setAttribute('aria-expanded', d.classList.contains('open') ? 'true' : 'false');
+      });
+    });
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('.nav-drop.open').forEach(function (d) {
+        if (!d.contains(e.target)) d.classList.remove('open');
+      });
     });
   })();
 </script>

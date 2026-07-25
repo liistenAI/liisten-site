@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="styles.css">
 <style>
   /* Page hero */
-  .page-hero { padding:64px 0 12px; }
+  .page-hero { padding:96px 0 72px; }
   .page-hero h1 { max-width:12ch; }
   .page-hero .lead { margin:20px 0 0; max-width:40em; }
 
@@ -47,7 +47,7 @@
   @media (max-width:900px) {
     .faq-layout { grid-template-columns:1fr; gap:20px; }
     .faq-nav { display:none; }
-    .page-hero { padding:44px 0 4px; }
+    .page-hero { padding:60px 0 44px; }
   }
 </style>
 </head>
@@ -69,12 +69,21 @@
       Liisten
     </a>
     <div class="nav-links">
-      <a href="/about.html">About</a>
-      <a href="/#get-app">Get the app</a>
-      <a href="/compare.html">Compare notetakers</a>
+      <div class="nav-drop">
+        <button class="nav-drop-btn" type="button" aria-haspopup="true" aria-expanded="false">Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-drop-menu">
+          <div class="nav-drop-card">
+            <a href="/accountants.html">Accountants &amp; bookkeepers</a>
+            <a href="/financial-advisers.html">Financial advisers</a>
+            <a href="/lawyers.html">Lawyers &amp; conveyancers</a>
+            <a href="/real-estate.html">Real estate agents</a>
+          </div>
+        </div>
+      </div>
       <a href="/pricing.html">Pricing</a>
       <a href="/austrac.html">AUSTRAC compliance</a>
       <a href="/faq.html" class="active">FAQ</a>
+      <a href="/about.html">About</a>
     </div>
     <a class="nav-cta" href="#waitlist">Join the waiting list</a>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -98,12 +107,18 @@
     </button>
   </div>
   <nav class="mm-links" aria-label="Primary">
-    <a href="/about.html">About</a>
-    <a href="/#get-app">Get the app</a>
-    <a href="/compare.html">Compare notetakers</a>
+    <div class="mm-group">Industries</div>
+    <a class="mm-sub" href="/accountants.html">Accountants &amp; bookkeepers</a>
+    <a class="mm-sub" href="/financial-advisers.html">Financial advisers</a>
+    <a class="mm-sub" href="/lawyers.html">Lawyers &amp; conveyancers</a>
+    <a class="mm-sub" href="/real-estate.html">Real estate agents</a>
+    <div class="mm-group">Liisten</div>
     <a href="/pricing.html">Pricing</a>
     <a href="/austrac.html">AUSTRAC compliance</a>
-    <a href="/faq.html">FAQ</a>
+    <a href="/compare.html">Compare notetakers</a>
+    <a href="/#get-app">Get the app</a>
+    <a class="active" href="/faq.html">FAQ</a>
+    <a href="/about.html">About</a>
   </nav>
   <a class="btn btn-primary mm-cta" href="#waitlist">Join the waiting list</a>
 </div>
@@ -293,14 +308,28 @@
         </svg>
         Liisten
       </div>
-      <div class="foot-links">
-        <a href="/about.html">About</a>
-        <a href="/#get-app">Get the app</a>
-        <a href="/compare.html">Compare notetakers</a>
-        <a href="/pricing.html">Pricing</a>
-        <a href="/austrac.html">AUSTRAC compliance</a>
-        <a href="/faq.html">FAQ</a>
-        <a href="#waitlist">Waiting list</a>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <div class="foot-h">Product</div>
+          <a href="/#get-app">Get the app</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/compare.html">Compare notetakers</a>
+          <a href="/austrac.html">AUSTRAC compliance</a>
+          <a href="/faq.html">FAQ</a>
+        </div>
+        <div class="foot-col">
+          <div class="foot-h">Industries</div>
+          <a href="/accountants.html">Accountants &amp; bookkeepers</a>
+          <a href="/financial-advisers.html">Financial advisers</a>
+          <a href="/lawyers.html">Lawyers &amp; conveyancers</a>
+          <a href="/real-estate.html">Real estate agents</a>
+        </div>
+        <div class="foot-col">
+          <div class="foot-h">Company</div>
+          <a href="/about.html">About</a>
+          <a href="#waitlist">Waiting list</a>
+          <a href="mailto:hello@liisten.com.au">hello@liisten.com.au</a>
+        </div>
       </div>
     </div>
     <div class="foot-legal">© 2026 Liisten. Australian owned · onshore in Sydney. Preliminary risk assessments are AI-assisted and for the practitioner's review — they are not legal or compliance advice, nor identity, PEP, or sanctions screening.</div>
@@ -333,6 +362,25 @@
         })
         .catch(function () { btn.disabled=false; btn.textContent='Join the waiting list';
           document.getElementById('waiterr').classList.add('show'); });
+    });
+  })();
+</script>
+<script>
+  // Industries dropdown: hover works on desktop; this adds tap/click toggle for touch.
+  (function () {
+    document.querySelectorAll('.nav-drop').forEach(function (d) {
+      var b = d.querySelector('.nav-drop-btn');
+      if (!b) return;
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        d.classList.toggle('open');
+        b.setAttribute('aria-expanded', d.classList.contains('open') ? 'true' : 'false');
+      });
+    });
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('.nav-drop.open').forEach(function (d) {
+        if (!d.contains(e.target)) d.classList.remove('open');
+      });
     });
   })();
 </script>
