@@ -1,0 +1,384 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Compliance — how Liisten helps Tranche 2 firms | Liisten</title>
+<link rel="canonical" href="https://liisten.com.au/compliance.html">
+<meta name="description" content="A plain-language guide to the customer due diligence and customer risk-rating obligations for Australian Tranche 2 firms — and how Liisten helps you meet them through the client conversation.">
+<link rel="stylesheet" href="styles.css">
+<style>
+  /* Page hero */
+  .page-hero { padding:96px 0 72px; }
+  .page-hero .eyebrow { color:var(--muted); }
+  .page-hero h1 { max-width:15ch; }
+  .page-hero .lead { margin:20px 0 0; max-width:40em; }
+  .cite { font-size:13px; color:var(--muted); margin-top:22px; max-width:52em; }
+  .cite a { color:var(--ink-soft); text-decoration:underline; text-underline-offset:2px; }
+
+  /* Obligation cards */
+  .obl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; margin-top:38px; }
+  .obl { background:var(--card); border:1px solid var(--line); border-radius:var(--radius); padding:26px 24px; box-shadow:var(--shadow-sm); }
+  .obl .num { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; font-size:12px; font-weight:700; color:var(--faint); letter-spacing:.08em; }
+  .obl h3 { font-size:19px; margin:12px 0 10px; letter-spacing:-.02em; }
+  .obl p { color:var(--ink-soft); font-size:15px; margin:0; }
+  .obl .act { display:inline-block; margin-top:14px; font-size:12px; font-weight:600; letter-spacing:.06em; text-transform:uppercase; color:var(--metal-2); }
+
+  /* Mapping table */
+  .map { margin-top:36px; border:1px solid var(--line); border-radius:var(--radius); overflow:hidden; background:var(--card); box-shadow:var(--shadow-sm); }
+  .map-row { display:grid; grid-template-columns:0.9fr 1.1fr; gap:0; border-top:1px solid var(--line); }
+  .map-row:first-child { border-top:none; }
+  .map-row > div { padding:22px 24px; }
+  .map-row .ob { border-right:1px solid var(--line); }
+  .map-row .ob b { display:block; font-size:16px; letter-spacing:-.01em; }
+  .map-row .ob span { display:block; color:var(--muted); font-size:13px; margin-top:5px; }
+  .map-row .hl { color:var(--ink-soft); font-size:15px; }
+  .map-row .hl b { color:var(--ink); }
+
+  /* Factor grid */
+  .factors { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:36px; }
+  .factor { display:flex; gap:14px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:14px; padding:18px 20px; }
+  .factor .fx { font-weight:700; font-size:15.5px; letter-spacing:-.01em; min-width:9.5em; }
+  .factor .arrow { color:var(--faint); font-weight:700; }
+  .factor .cat { color:var(--ink-soft); font-size:14.5px; }
+
+  /* Boundary callout */
+  .callout { background:#fbfaf6; border:1px solid #eee6d4; border-left:4px solid var(--med); border-radius:14px; padding:28px 30px; margin-top:14px; }
+  .callout h3 { margin:0 0 12px; font-size:20px; letter-spacing:-.02em; }
+  .callout p { color:var(--ink-soft); font-size:15.5px; margin:0 0 12px; max-width:60em; }
+  .callout p:last-child { margin-bottom:0; }
+  .callout a { color:var(--metal-2); font-weight:600; text-decoration:underline; text-underline-offset:2px; }
+
+  /* Workflow */
+  .flow { display:grid; grid-template-columns:repeat(4,1fr); gap:14px; margin-top:38px; }
+  .step { background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px 20px; position:relative; }
+  .step .k { font-family:ui-monospace,Menlo,monospace; font-size:11px; color:var(--faint); letter-spacing:.08em; }
+  .step h4 { margin:8px 0 6px; font-size:16px; letter-spacing:-.01em; }
+  .step p { margin:0; color:var(--muted); font-size:13.5px; }
+  .split { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px; }
+  .outcome { border-radius:14px; padding:20px 22px; }
+  .outcome.low { background:#f0f8f3; border:1px solid #cfe9db; }
+  .outcome.high { background:#fbf1ef; border:1px solid #efd4cf; }
+  .outcome .tag { font-size:12px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; }
+  .outcome.low .tag { color:var(--low); } .outcome.high .tag { color:var(--high); }
+  .outcome h4 { margin:8px 0 6px; font-size:16.5px; letter-spacing:-.01em; }
+  .outcome p { margin:0; color:var(--ink-soft); font-size:14.5px; }
+  .outcome a { color:var(--high); font-weight:600; }
+
+  @media (max-width:900px) {
+    .obl-grid, .factors, .flow { grid-template-columns:1fr; }
+    .map-row { grid-template-columns:1fr; }
+    .map-row .ob { border-right:none; border-bottom:1px solid var(--line); }
+    .split { grid-template-columns:1fr; }
+    .page-hero { padding:60px 0 44px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="wrap nav-in">
+    <a class="brand" href="/">
+      <svg width="30" height="20" viewBox="0 0 64 40" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#7e8894"/><stop offset=".5" stop-color="#454e58"/><stop offset="1" stop-color="#252c34"/>
+        </linearGradient></defs>
+        <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="url(#g)"/>
+        <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="url(#g)"/>
+        <rect x="34.5" y="3" width="8" height="34" rx="4" fill="url(#g)"/>
+        <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="url(#g)"/>
+      </svg>
+      Liisten
+    </a>
+    <div class="nav-links">
+      <div class="nav-drop">
+        <button class="nav-drop-btn" type="button" aria-haspopup="true" aria-expanded="false">Industries <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true"><path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <div class="nav-drop-menu">
+          <div class="nav-drop-card">
+            <a href="/accountants.html">Accountants &amp; bookkeepers</a>
+            <a href="/financial-advisers.html">Financial advisers</a>
+            <a href="/lawyers.html">Lawyers &amp; conveyancers</a>
+            <a href="/real-estate.html">Real estate agents</a>
+          </div>
+        </div>
+      </div>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/compliance.html" class="active">Compliance</a>
+      <a href="/faq.html">FAQ</a>
+      <a href="/about.html">About</a>
+      <a href="https://app.liisten.com.au/login">Sign in</a>
+    </div>
+    <a class="nav-cta" href="https://app.liisten.com.au/signup">Start free</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="mm-head">
+    <span class="mm-brand">
+      <svg width="30" height="20" viewBox="0 0 64 40" aria-hidden="true">
+        <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="#454e58"/>
+        <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#454e58"/>
+        <rect x="34.5" y="3" width="8" height="34" rx="4" fill="#454e58"/>
+        <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#454e58"/>
+      </svg>
+      Liisten
+    </span>
+    <button class="mm-close" id="mmClose" aria-label="Close menu">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="#14171b" stroke-width="2" stroke-linecap="round"/></svg>
+    </button>
+  </div>
+  <nav class="mm-links" aria-label="Primary">
+    <div class="mm-group">Industries</div>
+    <a class="mm-sub" href="/accountants.html">Accountants &amp; bookkeepers</a>
+    <a class="mm-sub" href="/financial-advisers.html">Financial advisers</a>
+    <a class="mm-sub" href="/lawyers.html">Lawyers &amp; conveyancers</a>
+    <a class="mm-sub" href="/real-estate.html">Real estate agents</a>
+    <div class="mm-group">Liisten</div>
+    <a href="/pricing.html">Pricing</a>
+    <a class="active" href="/compliance.html">Compliance</a>
+    <a href="/compare.html">Compare notetakers</a>
+    <a href="/#get-app">Get the app</a>
+    <a href="/faq.html">FAQ</a>
+    <a href="/about.html">About</a>
+    <a href="https://app.liisten.com.au/login">Sign in</a>
+  </nav>
+  <a class="btn btn-primary mm-cta" href="https://app.liisten.com.au/signup">Start free</a>
+</div>
+
+<!-- HERO -->
+<header class="page-hero">
+  <div class="wrap">
+    <div class="eyebrow mono">Compliance</div>
+    <h1>Your customer due diligence, met in the meeting.</h1>
+    <p class="lead">Australia's AML/CTF regime now reaches accountants, lawyers, conveyancers, financial advisers and real&#8209;estate professionals — the "Tranche 2" businesses. Before you provide a designated service, you have to understand a client's money&#8209;laundering risk, and keep a record of how you reached that view. Liisten helps you do that through the conversation you're already having — not another form.</p>
+    <p class="cite">This is a plain&#8209;language guide, not legal advice. Your obligations sit in the <em>Anti&#8209;Money Laundering and Counter&#8209;Terrorism Financing Act</em> and Rules — always work from <a href="https://www.austrac.gov.au/business/core-guidance/customer-due-diligence" target="_blank" rel="noopener">AUSTRAC's own guidance</a> and your firm's AML/CTF program.</p>
+  </div>
+</header>
+
+<!-- THE OBLIGATION -->
+<section class="warm">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">What the rules ask of you</div>
+      <h2>Three obligations, in plain terms</h2>
+      <p>AUSTRAC treats these as related but distinct. Liisten works inside the framework your firm sets, and helps most with the client&#8209;by&#8209;client work in steps 2 and 3.</p>
+    </div>
+
+    <div class="obl-grid">
+      <div class="obl">
+        <div class="num">01</div>
+        <h3>Assess your business's ML/TF risk</h3>
+        <p>Identify and assess the money&#8209;laundering, terrorism&#8209;financing and proliferation&#8209;financing risks your firm faces — across your services, your customers, your delivery channels and the countries you deal with. This assessment underpins your whole program.</p>
+        <span class="act">Your firm's own document</span>
+      </div>
+      <div class="obl">
+        <div class="num">02</div>
+        <h3>Perform initial CDD before you act</h3>
+        <p>Before providing a designated service, establish on reasonable grounds who your client is and their beneficial owners, whether anyone involved is a politically exposed person, the nature and purpose of the relationship, and — where risk is elevated — their source of funds and wealth. Keep records of how you established each.</p>
+        <span class="act">Where Liisten helps</span>
+      </div>
+      <div class="obl">
+        <div class="num">03</div>
+        <h3>Assign a customer risk rating</h3>
+        <p>Using the factors from your ML/TF risk assessment, rate each client's risk as low, medium or high — case by case. A low rating lets you apply simplified due diligence; a high rating requires enhanced due diligence. The rating, and your reasoning, must be documented.</p>
+        <span class="act">Where Liisten helps</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW LIISTEN HELPS -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">How Liisten helps</div>
+      <h2>The conversation becomes the record.</h2>
+      <p>A consented client meeting already surfaces almost everything CDD asks for. Liisten transcribes and diarises it, then turns it into a preliminary risk assessment and a documented, timestamped evidence trail — so the obligation is met as a by&#8209;product of the meeting, not a form afterwards.</p>
+    </div>
+
+    <div class="map">
+      <div class="map-row">
+        <div class="ob"><b>Establish matters on reasonable grounds</b><span>Act s.28 — identity, beneficial owners, purpose, source of funds</span></div>
+        <div class="hl">Captures the consented conversation where a client's identity, ownership structure, the purpose of the engagement and the origin of their funds naturally come up — <b>verbatim, diarised, and timestamped</b>.</div>
+      </div>
+      <div class="map-row">
+        <div class="ob"><b>Assign a customer risk rating</b><span>Balance each factor into an overall low / medium / high</span></div>
+        <div class="hl">Produces a <b>preliminary rating across seven AUSTRAC&#8209;aligned factors</b>, each backed by a quote from the meeting and the moment it was said. You review, adjust and sign — the judgement stays yours.</div>
+      </div>
+      <div class="map-row">
+        <div class="ob"><b>Show how you reached the view</b><span>Act s.31–32 — records that a reasonable person could follow</span></div>
+        <div class="hl">Every factor cites its evidence, so your file shows <b>how each matter was established</b>. Your signed review is the record of that reasoning, retained for <b>seven years</b>.</div>
+      </div>
+      <div class="map-row">
+        <div class="ob"><b>Decide simplified vs enhanced CDD</b><span>Low risk → simplified · high risk → enhanced</span></div>
+        <div class="hl">The overall rating and a plain gap report tell you when <b>low&#8209;risk (simplified) is defensible</b>, and when to <b>escalate to enhanced CDD or screening</b> — with the evidence to back either choice.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SEVEN FACTORS -->
+<section class="warm">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">Mapped to the framework</div>
+      <h2>Seven factors, aligned to AUSTRAC's categories</h2>
+      <p>AUSTRAC asks you to weigh the kind of customer, the service, how it's delivered and the countries involved. Liisten's preliminary assessment rates each of these, plus the two that most often drive risk — source of funds, and any PEP signal that surfaces in conversation.</p>
+    </div>
+
+    <div class="factors">
+      <div class="factor"><span class="fx">Client type</span><span class="arrow">→</span><span class="cat">The kind of customer you're dealing with</span></div>
+      <div class="factor"><span class="fx">Structure &amp; ownership</span><span class="arrow">→</span><span class="cat">Beneficial ownership and control complexity</span></div>
+      <div class="factor"><span class="fx">Service provided</span><span class="arrow">→</span><span class="cat">The designated service and how it's used</span></div>
+      <div class="factor"><span class="fx">Geography</span><span class="arrow">→</span><span class="cat">The countries you provide services in or through</span></div>
+      <div class="factor"><span class="fx">Delivery channel</span><span class="arrow">→</span><span class="cat">How the service is delivered to the client</span></div>
+      <div class="factor"><span class="fx">Source of funds</span><span class="arrow">→</span><span class="cat">Origin of the money and wealth involved</span></div>
+      <div class="factor"><span class="fx">PEP signal</span><span class="arrow">→</span><span class="cat">Politically exposed person indicators raised in conversation</span></div>
+      <div class="factor"><span class="fx">Behavioural flags</span><span class="arrow">→</span><span class="cat">Indicators of unusual or evasive activity</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BOUNDARY -->
+<section class="band">
+  <div class="wrap">
+    <div class="sec-head" style="margin-bottom:26px">
+      <div class="eyebrow mono">Preliminary — by design</div>
+      <h2>Where Liisten stops, and hands off.</h2>
+      <p>Liisten drafts; the practitioner decides. Being clear about the boundary is part of doing this well.</p>
+    </div>
+
+    <div class="callout">
+      <h3>What Liisten does not do</h3>
+      <p>Liisten is a <b>preliminary, evidence&#8209;based assessment</b> — not a formal check. It does <b>not verify identity</b>, and it does <b>not perform PEP or sanctions screening</b>. Its PEP factor only flags what surfaced in the conversation; it is not a screening result. Those formal checks run through your own provider — AML/CTF screening services such as <a href="https://www.annature.com.au" target="_blank" rel="noopener">Annature</a>. Liisten also doesn't replace your firm's business&#8209;level ML/TF risk assessment; it works inside it.</p>
+      <p>What Liisten gives you is the <b>signal for where to look</b>. When the assessment points to elevated risk — a complex structure, undocumented funds, a PEP indicator — that's your cue to apply enhanced CDD and run the formal screening. When it's clearly low&#8209;risk, you have the documented basis to apply simplified CDD with confidence. The signed review is your firm's assessment; Liisten just makes reaching it faster and better evidenced.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WORKFLOW -->
+<section class="warm">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">In practice</div>
+      <h2>How it fits your process</h2>
+      <p>From a single consented meeting to a filed, defensible record — with a clear fork based on what the assessment finds.</p>
+    </div>
+
+    <div class="flow">
+      <div class="step"><div class="k">STEP 1</div><h4>Record, with consent</h4><p>The client agrees on&#8209;screen, then you have the meeting you were going to have anyway.</p></div>
+      <div class="step"><div class="k">STEP 2</div><h4>Preliminary assessment</h4><p>Transcribed and diarised onshore, then rated across the seven factors — each with evidence.</p></div>
+      <div class="step"><div class="k">STEP 3</div><h4>Review &amp; sign</h4><p>You check the ratings, resolve any gaps, and sign. Your judgement is the record.</p></div>
+      <div class="step"><div class="k">STEP 4</div><h4>Keep the record</h4><p>The signed assessment and its evidence are retained for seven years.</p></div>
+    </div>
+
+    <div class="split">
+      <div class="outcome low">
+        <div class="tag">Low risk</div>
+        <h4>Apply simplified CDD</h4>
+        <p>The assessment supports a low rating, so simplified measures are defensible — and you have the documented evidence on file if you're ever asked.</p>
+      </div>
+      <div class="outcome high">
+        <div class="tag">Elevated risk</div>
+        <h4>Escalate — enhanced CDD &amp; screening</h4>
+        <p>A high rating or a PEP indicator is your trigger to apply enhanced CDD and run formal screening through a provider such as <a href="https://www.annature.com.au" target="_blank" rel="noopener">Annature</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GET STARTED -->
+<section class="band" id="get-started">
+  <div class="wrap">
+    <div class="wait">
+      <div class="eyebrow mono" style="color:#b9c0c9">Get started</div>
+      <h2>Start with three reports on us.</h2>
+      <p class="sub">Create your firm in two minutes — no card, no lock-in, unlimited seats. Record a meeting and see the file note and preliminary risk assessment for yourself.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1">
+        <a class="btn" style="background:#fff;color:#14171b" href="https://app.liisten.com.au/signup">Create your firm</a>
+        <a class="btn" style="border:1px solid #3a4149;color:#fff" href="https://app.liisten.com.au/login">Sign in</a>
+      </div>
+      <div class="wl-note">Three free reports per firm, fully visible. Prices in AUD ex GST when you're ready to buy credits.</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <svg width="26" height="17" viewBox="0 0 64 40" aria-hidden="true">
+          <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="#454e58"/>
+          <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#454e58"/>
+          <rect x="34.5" y="3" width="8" height="34" rx="4" fill="#454e58"/>
+          <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#454e58"/>
+        </svg>
+        Liisten
+      </div>
+      <div class="foot-cols">
+        <div class="foot-col">
+          <div class="foot-h">Product</div>
+          <a href="/#get-app">Get the app</a>
+          <a href="/pricing.html">Pricing</a>
+          <a href="/compare.html">Compare notetakers</a>
+          <a href="/compliance.html">AUSTRAC compliance</a>
+          <a href="/faq.html">FAQ</a>
+        </div>
+        <div class="foot-col">
+          <div class="foot-h">Industries</div>
+          <a href="/accountants.html">Accountants &amp; bookkeepers</a>
+          <a href="/financial-advisers.html">Financial advisers</a>
+          <a href="/lawyers.html">Lawyers &amp; conveyancers</a>
+          <a href="/real-estate.html">Real estate agents</a>
+        </div>
+        <div class="foot-col">
+          <div class="foot-h">Company</div>
+          <a href="/about.html">About</a>
+          <a href="/privacy.html">Privacy</a>
+          <a href="https://app.liisten.com.au/signup">Create your firm</a>
+          <a href="https://app.liisten.com.au/login">Sign in</a>
+          <a href="mailto:hello@liisten.com.au">hello@liisten.com.au</a>
+        </div>
+      </div>
+    </div>
+    <div class="foot-legal">© 2026 Liisten. Australian owned · onshore in Sydney. Preliminary risk assessments are AI-assisted and for the practitioner's review — they are not legal or compliance advice, nor identity, PEP, or sanctions screening.</div>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu'), c = document.getElementById('mmClose');
+    if (!t || !m) return;
+    function setOpen(o) { m.classList.toggle('open', o); document.body.style.overflow = o ? 'hidden' : ''; t.setAttribute('aria-expanded', o ? 'true' : 'false'); }
+    t.addEventListener('click', function () { setOpen(true); });
+    if (c) c.addEventListener('click', function () { setOpen(false); });
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setOpen(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
+  })();
+
+  </script>
+<script>
+  // Industries dropdown: hover works on desktop; this adds tap/click toggle for touch.
+  (function () {
+    document.querySelectorAll('.nav-drop').forEach(function (d) {
+      var b = d.querySelector('.nav-drop-btn');
+      if (!b) return;
+      b.addEventListener('click', function (e) {
+        e.stopPropagation();
+        d.classList.toggle('open');
+        b.setAttribute('aria-expanded', d.classList.contains('open') ? 'true' : 'false');
+      });
+    });
+    document.addEventListener('click', function (e) {
+      document.querySelectorAll('.nav-drop.open').forEach(function (d) {
+        if (!d.contains(e.target)) d.classList.remove('open');
+      });
+    });
+  })();
+</script>
+</body>
+</html>
