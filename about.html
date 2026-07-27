@@ -80,7 +80,7 @@
       <a href="/faq.html">FAQ</a>
       <a href="/about.html" class="active">About</a>
     </div>
-    <a class="nav-cta" href="#waitlist">Join the waiting list</a>
+    <a class="nav-cta" href="https://app.liisten.com.au/signup">Start free</a>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
   </div>
 </nav>
@@ -115,7 +115,7 @@
     <a href="/faq.html">FAQ</a>
     <a class="active" href="/about.html">About</a>
   </nav>
-  <a class="btn btn-primary mm-cta" href="#waitlist">Join the waiting list</a>
+  <a class="btn btn-primary mm-cta" href="https://app.liisten.com.au/signup">Start free</a>
 </div>
 
 <!-- HERO -->
@@ -205,30 +205,18 @@
   </div>
 </section>
 
-<!-- WAITLIST -->
-<section class="band" id="waitlist">
+<!-- GET STARTED -->
+<section class="band" id="get-started">
   <div class="wrap">
     <div class="wait">
-      <div class="eyebrow mono" style="color:#b9c0c9">Early access</div>
-      <h2>Come build it with us.</h2>
-      <p class="sub">We're opening access to a small group of pilot firms and shaping Liisten around how they really work. Join the waiting list and we'll be in touch as places open.</p>
-      <form class="wl" id="waitform" method="POST" action="https://formspree.io/f/mykrwbka">
-        <input type="text" name="name" placeholder="Your name" autocomplete="name" required>
-        <input type="email" name="email" placeholder="Work email" autocomplete="email" required>
-        <select name="firm_type" aria-label="Type of firm" required>
-          <option value="" disabled selected>Type of firm…</option>
-          <option>Accounting / bookkeeping</option>
-          <option>Legal / conveyancing</option>
-          <option>Financial advice</option>
-          <option>Real estate</option>
-          <option>Other</option>
-        </select>
-        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
-        <button class="btn" type="submit">Join the waiting list</button>
-      </form>
-      <div class="wl-note">No spam. We'll only email you about early access. Australian owned, onshore in Sydney.</div>
-      <div class="wl-err" id="waiterr">Something went wrong — email <a href="mailto:hello@liisten.com.au" style="color:#f3b0ab">hello@liisten.com.au</a> and we'll add you.</div>
-      <div class="wl-ok" id="waitok"><div class="big">You're on the list. ✓</div><div class="small">Thanks — we'll be in touch as we open access to pilot firms.</div></div>
+      <div class="eyebrow mono" style="color:#b9c0c9">Get started</div>
+      <h2>Start with three reports on us.</h2>
+      <p class="sub">Create your firm in two minutes — no card, no lock-in, unlimited seats. Record a meeting and see the file note and preliminary risk assessment for yourself.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;position:relative;z-index:1">
+        <a class="btn" style="background:#fff;color:#14171b" href="https://app.liisten.com.au/signup">Create your firm</a>
+        <a class="btn" style="border:1px solid #3a4149;color:#fff" href="https://app.liisten.com.au/login">Sign in</a>
+      </div>
+      <div class="wl-note">Three free reports per firm, fully visible. Prices in AUD ex GST when you're ready to buy credits.</div>
     </div>
   </div>
 </section>
@@ -266,7 +254,8 @@
           <div class="foot-h">Company</div>
           <a href="/about.html">About</a>
           <a href="/privacy.html">Privacy</a>
-          <a href="#waitlist">Waiting list</a>
+          <a href="https://app.liisten.com.au/signup">Create your firm</a>
+          <a href="https://app.liisten.com.au/login">Sign in</a>
           <a href="mailto:hello@liisten.com.au">hello@liisten.com.au</a>
         </div>
       </div>
@@ -286,24 +275,7 @@
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setOpen(false); });
   })();
 
-  (function () {
-    var form = document.getElementById('waitform');
-    if (!form) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var btn = form.querySelector('button');
-      btn.disabled = true; btn.textContent = 'Joining…';
-      fetch(form.action, { method:'POST', body:new FormData(form), headers:{ Accept:'application/json' } })
-        .then(function (r) {
-          if (r.ok) { form.style.display='none'; document.querySelector('.wl-note').style.display='none';
-            document.getElementById('waiterr').classList.remove('show'); document.getElementById('waitok').classList.add('show'); }
-          else { throw new Error('bad'); }
-        })
-        .catch(function () { btn.disabled=false; btn.textContent='Join the waiting list';
-          document.getElementById('waiterr').classList.add('show'); });
-    });
-  })();
-</script>
+  </script>
 <script>
   // Industries dropdown: hover works on desktop; this adds tap/click toggle for touch.
   (function () {
