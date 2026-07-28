@@ -125,3 +125,48 @@ footer { padding:52px 0 64px; }
 .foot-col a { text-decoration:none; color:var(--ink-soft); font-size:14px; font-weight:500; }
 .foot-col a:hover { color:var(--ink); }
 .foot-h { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:650; margin-bottom:2px; }
+
+/* ─── Industry page hero: full-bleed photo with the copy overlaid ───────────
+   Same treatment as the homepage. The white wash is strongest on the left so
+   ink text stays legible while the photo carries the right side (the subject
+   sits right of centre in each sector shot). Shared here so every industry
+   page can adopt it by swapping the <img> and the object-position. */
+.hero-shot { position:relative; margin-bottom:56px; }
+.hero-shot .hero-bgimg { position:absolute; inset:0; overflow:hidden; }
+.hero-shot .hero-bgimg img { width:100%; height:100%; object-fit:cover; object-position:64% 26%; }
+.hero-shot .hero-scrim { position:absolute; inset:0;
+  background:linear-gradient(90deg, rgba(245,246,248,.97) 0%, rgba(245,246,248,.94) 32%, rgba(245,246,248,.64) 54%, rgba(245,246,248,.10) 78%, rgba(245,246,248,0) 100%),
+             linear-gradient(0deg, rgba(245,246,248,.88) 0%, rgba(245,246,248,0) 30%); }
+.hero-shot .hero-inner { position:relative; z-index:2; display:flex; align-items:center;
+  min-height:600px; padding-top:56px; padding-bottom:104px; }
+.hero-shot .hero-copy { max-width:640px; }
+.hero-shot h1 { max-width:19ch; }
+.hero-shot .lead { margin:20px 0 0; max-width:36em; }
+.hero-shot .hero-cta { display:flex; gap:12px; flex-wrap:wrap; margin-top:26px; }
+/* The real deliverables spilling out of the meeting — same props as the homepage. */
+.hero-shot .hero-doc { position:absolute; z-index:4; width:min(15%, 214px); border-radius:10px;
+  overflow:hidden; background:#fff; box-shadow:var(--shadow-lg); border:1px solid var(--line); }
+.hero-shot .hero-doc img { display:block; width:100%; }
+.hero-shot .doc-note { right:22%; bottom:-44px; transform:rotate(-4deg); }
+.hero-shot .doc-risk { right:11%; bottom:-32px; transform:rotate(2.5deg); z-index:5; }
+.hero-shot .hero-chip { position:absolute; display:flex; align-items:center; gap:10px;
+  background:rgba(255,255,255,.88); backdrop-filter:blur(12px) saturate(160%); -webkit-backdrop-filter:blur(12px) saturate(160%);
+  border:1px solid rgba(255,255,255,.75); border-radius:13px; padding:10px 14px; box-shadow:var(--shadow);
+  font-size:13.5px; font-weight:650; color:var(--ink); z-index:6; line-height:1.25; }
+.hero-shot .hero-chip .sub { display:block; font-weight:500; font-size:11.5px; color:var(--muted); margin-top:2px; }
+.hero-shot .chip-out { right:37%; bottom:22px; }
+.hero-shot .chip-ic { flex-shrink:0; display:grid; place-items:center; }
+
+@media (max-width:900px) {
+  /* Narrow: flatten the wash to top-down so the copy sits on near-solid ground,
+     and let the documents anchor the bottom edge. */
+  .hero-shot { margin-bottom:44px; }
+  /* Industry leads run long, so hold the wash near-opaque well down the frame —
+     the copy must never sit on unmuted photo. */
+  .hero-shot .hero-scrim { background:linear-gradient(180deg, rgba(245,246,248,.97) 0%, rgba(245,246,248,.94) 60%, rgba(245,246,248,.58) 84%, rgba(245,246,248,.15) 100%); }
+  .hero-shot .hero-inner { min-height:0; padding-top:40px; padding-bottom:190px; }
+  .hero-shot .hero-doc { width:29%; }
+  .hero-shot .doc-note { right:52%; bottom:-28px; }
+  .hero-shot .doc-risk { right:22%; bottom:-22px; }
+  .hero-shot .chip-out { display:none; }
+}
