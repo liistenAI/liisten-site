@@ -97,18 +97,62 @@
     background:rgba(255,255,255,.14); color:#fff; font-size:26px; line-height:1; cursor:pointer; z-index:101; }
   .lb-close:hover { background:rgba(255,255,255,.26); }
 
-  /* Hero */
-  header.hero { padding:70px 0 30px; }
-  .hero-grid { display:grid; grid-template-columns:1.02fr .98fr; gap:52px; align-items:center; }
+  /* Hero — the real meeting photo full-bleed behind the copy. A white wash, strongest
+     on the left, keeps ink text legible while the photo carries the right side (the
+     rest of the site is light, so no moody dark scrim). The real app in a device
+     frame and the two real PDF outputs float bottom-right: meeting in, records out. */
+  header.hero { position:relative; margin-bottom:56px; }
+  .hero-bgimg { position:absolute; inset:0; overflow:hidden; }
+  .hero-bgimg img { width:100%; height:100%; object-fit:cover; object-position:66% 28%; }
+  .hero-scrim { position:absolute; inset:0;
+    background:linear-gradient(90deg, rgba(245,246,248,.97) 0%, rgba(245,246,248,.93) 30%, rgba(245,246,248,.62) 52%, rgba(245,246,248,.08) 76%, rgba(245,246,248,0) 100%),
+               linear-gradient(0deg, rgba(245,246,248,.88) 0%, rgba(245,246,248,0) 30%); }
+  .hero-inner { position:relative; z-index:2; display:flex; align-items:center; min-height:620px; padding-top:56px; padding-bottom:110px; }
+  .hero-copy { max-width:660px; }
   .lede { font-size:19px; color:var(--ink-soft); margin:22px 0 14px; max-width:34em; }
   .lede b { color:var(--ink); font-weight:650; }
   .hero-cta { display:flex; gap:12px; flex-wrap:wrap; margin-top:14px; }
   .assure { margin-top:18px; font-size:13.5px; color:var(--muted); display:flex; align-items:center; gap:8px; }
   .dot { width:6px; height:6px; border-radius:50%; background:var(--low); box-shadow:0 0 0 3px rgba(27,127,77,.14); }
-  /* Hero visual: phone + a PDF peeking behind */
-  .hero-visual { position:relative; }
-  .hero-visual .phone { width:74%; margin-left:auto; position:relative; z-index:2; }
-  .hero-visual .doc { position:absolute; width:52%; left:0; bottom:6%; z-index:1; transform:rotate(-5deg); }
+  .hero-chip { position:absolute; display:flex; align-items:center; gap:10px;
+    background:rgba(255,255,255,.88); backdrop-filter:blur(12px) saturate(160%); -webkit-backdrop-filter:blur(12px) saturate(160%);
+    border:1px solid rgba(255,255,255,.75); border-radius:13px; padding:10px 14px;
+    box-shadow:var(--shadow); font-size:13.5px; font-weight:650; color:var(--ink); z-index:6; line-height:1.25; }
+  .hero-chip .sub { display:block; font-weight:500; font-size:11.5px; color:var(--muted); margin-top:2px; }
+  .chip-out { right:26.5%; bottom:26px; }
+  .rec-dot { width:9px; height:9px; border-radius:50%; background:var(--high); flex-shrink:0; animation:recpulse 2s infinite; }
+  @keyframes recpulse { 0%,100% { box-shadow:0 0 0 3px rgba(179,38,30,.14); } 50% { box-shadow:0 0 0 8px rgba(179,38,30,.04); } }
+  .chip-ic { flex-shrink:0; display:grid; place-items:center; }
+  .badge-med { display:inline-block; background:#fdf1df; color:var(--med); border-radius:999px; padding:1px 8px; font-size:11px; font-weight:700; vertical-align:1px; margin-left:6px; }
+  .hero-doc { position:absolute; z-index:4; width:min(15%, 224px); border-radius:10px; overflow:hidden; background:#fff;
+    box-shadow:var(--shadow-lg); border:1px solid var(--line); }
+  .hero-doc img { display:block; width:100%; }
+  .doc-note { right:27%; bottom:-48px; transform:rotate(-4deg); }
+  .doc-risk { right:17.5%; bottom:-36px; transform:rotate(2.5deg); z-index:5; }
+  /* The phone: a simplified rendering of the app's real recording state (name, timer,
+     recording line, End meeting) with the Liisten mark pulsing — the same elements as
+     the actual screen, decluttered so it reads at hero size. All type scales from the
+     device's font-size, so one number resizes the whole screen per breakpoint. */
+  .hero-device { position:absolute; right:3%; bottom:-46px; width:min(16.5%, 246px); z-index:5; font-size:15px;
+    aspect-ratio:9 / 18.6; border-radius:2.2em; border:.42em solid #191c21; background:#191c21;
+    box-shadow:var(--shadow-lg); overflow:hidden; }
+  .ph-screen { height:100%; background:var(--bg); display:flex; flex-direction:column; align-items:center;
+    padding:2.4em 1em 1.1em; text-align:center; }
+  .ph-name { font-weight:700; font-size:1.05em; letter-spacing:-.01em; }
+  .ph-timer { font-size:1.9em; font-weight:600; letter-spacing:.04em; margin-top:.55em; }
+  .ph-wave { display:flex; align-items:center; gap:.5em; height:3.4em; margin:1.6em 0 0; }
+  .ph-wave span { width:.62em; border-radius:.4em; background:#454e58; height:1.2em; animation:wave 1.5s ease-in-out infinite; }
+  .ph-wave span:nth-child(1) { animation-delay:0s; }
+  .ph-wave span:nth-child(2) { animation-delay:.22s; }
+  .ph-wave span:nth-child(3) { animation-delay:.44s; }
+  .ph-wave span:nth-child(4) { animation-delay:.66s; }
+  @keyframes wave { 0%,100% { height:1.1em; opacity:.75; } 50% { height:3.1em; opacity:1; } }
+  .ph-rec { display:flex; align-items:center; gap:.5em; font-size:.68em; color:var(--muted); margin-top:2em; }
+  .ph-rec .rec-dot { width:.85em; height:.85em; }
+  .ph-actions { margin-top:auto; display:flex; gap:.5em; width:100%; }
+  .ph-btn { flex:1; text-align:center; border-radius:2em; padding:.55em 0; font-size:.72em; font-weight:650; }
+  .ph-btn.ghost { background:#e8ebf0; color:var(--ink-soft); }
+  .ph-btn.solid { background:#191c21; color:#fff; }
 
   /* Value points */
   .values { display:grid; grid-template-columns:repeat(2,1fr); gap:20px; margin-top:44px; }
@@ -223,11 +267,23 @@
     .nav-links { display:none; }
     .nav-cta { display:none; }
     .nav-toggle { display:flex; }
-    .hero-grid,.outputs,.source-band { grid-template-columns:1fr; gap:36px; }
+    .hero-top,.outputs,.source-band { grid-template-columns:1fr; gap:36px; }
+    .hero-top { gap:14px; margin-bottom:26px; }
     .deliverables { grid-template-columns:1fr 1fr; gap:16px; }
     .values,.steps,.trust,.app-cards { grid-template-columns:1fr; }
     .trust { grid-template-columns:1fr 1fr; }
-    .hero-visual .phone { width:64%; } .hero-visual .doc { width:46%; }
+    /* Narrow screens: a flatter top-down wash keeps the copy readable; the documents
+       and device shrink but stay the story along the bottom edge. */
+    .hero-scrim { background:linear-gradient(180deg, rgba(245,246,248,.96) 0%, rgba(245,246,248,.88) 48%, rgba(245,246,248,.42) 78%, rgba(245,246,248,.12) 100%); }
+    .hero-inner { min-height:0; padding-top:40px; padding-bottom:210px; }
+    .hero-chip { font-size:12px; padding:8px 11px; max-width:60%; }
+    .hero-chip .sub { font-size:10.5px; }
+    .chip-out { display:none; }
+    .hero-doc { width:29%; }
+    .doc-note { right:64%; bottom:-30px; }
+    .doc-risk { right:35%; bottom:-24px; }
+    .hero-device { width:30%; right:2.5%; bottom:-28px; font-size:8.5px; }
+    header.hero { margin-bottom:44px; }
     .wait { padding:38px 26px; border-radius:22px; } section { padding:60px 0; }
     form.wl { grid-template-columns:1fr; }
     .desk .phone { width:46%; }
@@ -344,20 +400,33 @@
 
 <!-- HERO -->
 <header class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <div class="eyebrow mono">For Australian Tranche 2 firms</div>
-      <h1><span class="dim">Turn a client meeting into an</span><br>AUSTRAC risk assessment.</h1>
-      <p class="lede">Liisten records a consented client meeting and turns it into an <b>AUSTRAC-mapped preliminary risk assessment</b> — transcribed, diarised, evidence-cited, and ready for you to review and sign. Onshore in Sydney, from the first conversation.</p>
+  <div class="hero-bgimg"><img src="assets/meeting.jpg" alt="" aria-hidden="true"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow mono">For accountants · advisers · lawyers · real estate</div>
+      <h1><span class="dim">The AI meeting assistant</span><br>for Tranche 2 firms.</h1>
+      <p class="lede">Capture every client meeting. Automatically generate <b>meeting notes, AML evidence, client risk assessments</b> and follow-up actions.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="https://app.liisten.com.au/signup" target="_blank" rel="noopener">Start free</a>
         <a class="btn btn-ghost" href="https://calendly.com/hello-liisten/30min">Book a demo</a>
       </div>
       <div class="assure"><span class="dot"></span> Consent-first · evidence-cited · your data never leaves Australia</div>
     </div>
-    <div class="hero-visual">
-      <div class="doc"><img src="assets/pdf-assessment.png" alt="Example preliminary risk assessment PDF produced by Liisten"></div>
-      <div class="phone"><img src="assets/app-review.png" alt="The Liisten app: reviewing and signing a risk assessment"></div>
+  </div>
+  <div class="hero-doc doc-note"><img src="assets/pdf-summary.png" alt="The file note Liisten produces from the meeting"></div>
+  <div class="hero-doc doc-risk"><img src="assets/pdf-assessment.png" alt="The AUSTRAC-mapped preliminary risk assessment Liisten produces"></div>
+  <div class="hero-chip chip-out">
+    <span class="chip-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" stroke="#3a4048" stroke-width="1.6"/><path d="M9 12l2 2 4-4" stroke="#1b7f4d" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <span>The outputs<span class="sub">File note + preliminary risk assessment — you review and sign</span></span>
+  </div>
+  <div class="hero-device" role="img" aria-label="A phone recording the meeting with Liisten: timer running, recording in progress">
+    <div class="ph-screen">
+      <div class="ph-name">Marcus Webb</div>
+      <div class="ph-timer mono">00:04:12</div>
+      <div class="ph-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+      <div class="ph-rec"><span class="rec-dot"></span> Recording — screen may be locked</div>
+      <div class="ph-actions"><span class="ph-btn ghost">Pause</span><span class="ph-btn solid">End meeting</span></div>
     </div>
   </div>
 </header>
