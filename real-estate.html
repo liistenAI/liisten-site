@@ -12,9 +12,9 @@
 <meta property="og:type" content="website">
 <link rel="stylesheet" href="styles.css">
 <style>
-  .page-hero { padding:96px 0 72px; }
-  .page-hero h1 { max-width:19ch; }
-  .page-hero .lead { margin:20px 0 0; max-width:44em; }
+  /* Shared .hero-shot treatment (styles.css) — photo full-bleed behind the copy.
+     Sector crop only: keep the agent (right of frame) clear of the text. */
+  .hero-shot .hero-bgimg img { object-position:64% 26%; }
 
   /* Obligations */
   .oblig { display:grid; grid-template-columns:repeat(2,1fr); gap:14px; margin-top:34px; }
@@ -45,7 +45,6 @@
 
   @media (max-width:900px) {
     .oblig, .steps, .listen { grid-template-columns:1fr; }
-    .page-hero { padding:60px 0 44px; }
   }
 </style>
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
@@ -124,11 +123,25 @@
 </div>
 
 <!-- HERO -->
-<header class="page-hero">
-  <div class="wrap">
-    <div class="eyebrow mono">For real estate agents · Tranche 2</div>
-    <h1>Every vendor and every buyer, documented for AUSTRAC.</h1>
-    <p class="lead">From 1 July 2026, brokering the sale, purchase or transfer of real estate is a designated service — and both your vendor and your buyer are customers under the regime. The listing appointment and the buyer conversation already cover most of what customer due diligence asks. Liisten records them, with consent, and drafts the record — a file note and a preliminary risk assessment tuned to property transactions.</p>
+<header class="hero-shot">
+  <div class="hero-bgimg"><img src="assets/meeting-real-estate.jpg" alt="" aria-hidden="true"></div>
+  <div class="hero-scrim" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <div class="eyebrow mono">For real estate agents · Tranche 2</div>
+      <h1>Every vendor and every buyer, documented for AUSTRAC.</h1>
+      <p class="lead">From 1 July 2026, brokering the sale, purchase or transfer of real estate is a designated service — and both your vendor and your buyer are customers under the regime. The listing appointment and the buyer conversation already cover most of what customer due diligence asks. Liisten records them, with consent, and drafts the record — a file note and a preliminary risk assessment tuned to property transactions.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="https://app.liisten.com.au/signup" target="_blank" rel="noopener">Start free</a>
+        <a class="btn btn-ghost" href="https://calendly.com/hello-liisten/30min" target="_blank" rel="noopener">Book a demo</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-doc doc-note"><img src="assets/pdf-summary.png" alt="The file note Liisten drafts from the listing or buyer conversation"></div>
+  <div class="hero-doc doc-risk"><img src="assets/pdf-assessment.png" alt="The AUSTRAC-mapped preliminary risk assessment Liisten drafts"></div>
+  <div class="hero-chip chip-out">
+    <span class="chip-ic" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z" stroke="#3a4048" stroke-width="1.6"/><path d="M9 12l2 2 4-4" stroke="#1b7f4d" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    <span>The outputs<span class="sub">File note + preliminary risk assessment — you review and sign</span></span>
   </div>
 </header>
 
