@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy Policy — Liisten</title>
-<meta name="description" content="How Liisten handles personal information — consistent with the Privacy Act 1988 (Cth) and the Australian Privacy Principles. Onshore processing, consent-first recording, no training on your data.">
-<link rel="canonical" href="https://liisten.com.au/privacy.html">
+<title>Security — Liisten</title>
+<meta name="description" content="How Liisten is built and run: Australian onshore infrastructure, encryption in transit and at rest, role-based access, approval-gated records, and how to report a security issue.">
+<link rel="canonical" href="https://liisten.com.au/security.html">
 <link rel="stylesheet" href="styles.css">
 <style>
   .page-hero { padding:96px 0 72px; }
@@ -98,51 +98,64 @@
 <!-- HERO -->
 <header class="page-hero">
   <div class="wrap">
-    <div class="eyebrow mono">Privacy</div>
-    <h1>Privacy Policy</h1>
-    <p class="lead">How Liisten handles personal information — consistent with the Privacy Act 1988 (Cth) and the Australian Privacy Principles. The short version: consent first, processed onshore, never used to train AI models, and yours to delete.</p>
+    <div class="eyebrow mono">Security</div>
+    <h1>How Liisten is built and run</h1>
+    <p class="lead">Liisten holds recordings of client conversations and the compliance records drawn from them — among the most sensitive material a firm has. This page sets out how that material is protected, in specifics rather than adjectives, and how to reach us if you find a problem.</p>
   </div>
 </header>
 
-<!-- POLICY -->
+<!-- SECURITY -->
 <section class="warm">
   <div class="wrap">
     <div class="legal">
-      <p class="updated">Effective 27 July 2026 · Liisten (“we”, “us”) — Australian owned, hosted in Sydney.</p>
+      <p class="updated">Last reviewed 29 July 2026 · Liisten — Australian owned, hosted in Sydney.</p>
 
-      <h2>1. Scope</h2>
-      <p>This policy covers the Liisten app, the dashboard at app.liisten.com.au, and this website. It explains what personal information we collect, why, where it lives, and your choices — consistent with the Privacy Act 1988 (Cth) and the Australian Privacy Principles (APPs).</p>
+      <h2>1. Where your data lives</h2>
+      <p>Everything runs in Amazon Web Services' Sydney region (ap-southeast-2): the application, the database, the file storage, the transcription, and the AI analysis. Meeting content does not leave Australia at any point in the pipeline. The AI model is invoked through an Australian inference endpoint, and the application refuses to start if it is configured any other way — the onshore guarantee is enforced in code, not just in policy.</p>
 
-      <h2>2. What we collect</h2>
+      <h2>2. Encryption</h2>
       <ul>
-        <li><b>Account details</b> — your name, work email, firm name and business type.</li>
-        <li><b>Meeting recordings</b> — the audio you record, always after spoken consent is captured at the start of the recording.</li>
-        <li><b>Generated records</b> — the transcript, file note and preliminary risk assessment produced from a recording.</li>
-        <li><b>Client details</b> — the information your firm enters about its clients to build its compliance records.</li>
+        <li><b>In transit</b> — HTTPS everywhere, TLS 1.2 minimum with TLS 1.3 supported, on both the web app and the API.</li>
+        <li><b>At rest</b> — the database is encrypted, as is the storage holding recordings and generated documents.</li>
+        <li><b>Never public</b> — the database has no route from the internet, and the file storage has public access blocked entirely. Audio is served only through short-lived links that expire in five minutes.</li>
       </ul>
 
-      <h2>3. How we use it</h2>
-      <p>Solely to provide the service: to transcribe and analyse your meetings, make the results available to your firm in the dashboard, notify you when a report is ready, and support your account. We do not use your recordings, transcripts or reports to train AI models, and we do not sell personal information.</p>
-
-      <h2>4. Storage and location</h2>
-      <p>Recordings, transcripts and reports are processed and stored on Australian onshore infrastructure (Sydney), encrypted in transit and at rest. Notification emails — such as “a report is ready to review” — deliberately contain no client details or meeting content, so nothing sensitive leaves that onshore boundary in email.</p>
-
-      <h2>5. Who we share it with</h2>
-      <p>Only the processors needed to run the service, under contract and not permitted to use your data for their own purposes:</p>
+      <h2>3. Accounts and access</h2>
       <ul>
-        <li>a transcription and speaker-diarisation provider and an AI analysis provider, operating onshore, for meeting content;</li>
-        <li>a transactional email provider, for account emails that carry no meeting or client content;</li>
-        <li>a payments provider, when you buy credits — your card details go directly to them and never touch our servers.</li>
+        <li>Passwords are hashed with <b>scrypt</b>, a memory-hard algorithm chosen to make large-scale cracking expensive. We never store, log or transmit a password in a readable form, and cannot see yours.</li>
+        <li>Sign-in takes the same amount of time whether or not the email exists, so the response can't be used to discover who has an account.</li>
+        <li>Invitation and password-reset links use 256-bit random tokens, stored only as hashes, usable once, and expiring within an hour.</li>
+        <li>Every request is scoped to your firm from your session token — never from anything the browser sends — so one firm's records cannot be requested by another.</li>
+        <li>Roles (owner, compliance officer, team member) govern who can manage people and billing; the server enforces this, not just the interface.</li>
       </ul>
 
-      <h2>6. Retention</h2>
-      <p>Meeting audio is retained only as long as needed to process and support the record. Signed reports and file notes are firm records: they're retained securely for at least seven years, consistent with AML/CTF record-keeping obligations, and remain under your firm's control. You can delete meetings and their audio from within the app, subject to records your firm is required to keep.</p>
+      <h2>4. The browser application</h2>
+      <p>app.liisten.com.au is served with a strict Content Security Policy, HSTS, and framing denied, so the dashboard cannot be embedded in another site or made to load third-party code. There are no third-party analytics or advertising scripts on the dashboard.</p>
 
-      <h2>7. Your rights</h2>
-      <p>You can access and correct your personal information, and request deletion, subject to any records your firm must keep under its professional and AML/CTF obligations. If you believe we've mishandled your information, contact us and we'll investigate; you can also complain to the Office of the Australian Information Commissioner (OAIC).</p>
+      <h2>5. Records you can defend</h2>
+      <ul>
+        <li>A report cannot be downloaded until a practitioner has approved it, and editing an approved report locks it again until it is re-approved — an unreviewed assessment can never leave as a finished document.</li>
+        <li>Every review action is recorded with who did it and when, and each edit increments the assessment's version.</li>
+        <li>Each document states how consent to record was evidenced: captured on the recording itself, or attested by a named practitioner for audio recorded elsewhere.</li>
+      </ul>
 
-      <h2>8. Contact</h2>
-      <p>Privacy enquiries: <a href="mailto:hello@liisten.com.au">hello@liisten.com.au</a>. We'll respond within a reasonable period, usually a few business days.</p>
+      <h2>6. Payments</h2>
+      <p>Card details are handled entirely by our payments provider and never reach Liisten's servers. We store only a reference needed to apply credits to your account.</p>
+
+      <h2>7. Secrets and change control</h2>
+      <p>Database credentials, signing keys and third-party API keys are held in AWS Secrets Manager and resolved at runtime — they are never stored in configuration files or source code. Production deployments take a database snapshot first, and schema changes are rehearsed against a copy before they are applied.</p>
+
+      <h2>8. Backups and retention</h2>
+      <p>The database is backed up automatically and protected against accidental deletion. Meeting audio is retained only as long as needed to process and support the record. Signed reports and file notes are firm records, retained securely for at least seven years in line with AML/CTF record-keeping obligations. See the <a href="/privacy.html">Privacy Policy</a> for how to access or delete your information.</p>
+
+      <h2>9. What we're still building</h2>
+      <p>We would rather tell you what isn't there yet than imply otherwise. Multi-factor authentication, single sign-on, and customer-facing audit exports are on the roadmap and not yet available. If any of these are a requirement for your firm, tell us — it moves them up the list.</p>
+
+      <h2>10. Reporting a security issue</h2>
+      <p>If you believe you've found a vulnerability, email <a href="mailto:security@liisten.com.au">security@liisten.com.au</a> with enough detail to reproduce it. We'll acknowledge you within two business days and keep you posted while we investigate. Please give us a reasonable opportunity to fix the issue before disclosing it publicly; we won't pursue action against anyone who reports in good faith and doesn't access or alter other people's data while testing.</p>
+
+      <h2>11. Contact</h2>
+      <p>General security or due-diligence questions: <a href="mailto:hello@liisten.com.au">hello@liisten.com.au</a>. We're happy to complete a vendor security questionnaire.</p>
     </div>
   </div>
 </section>
@@ -197,7 +210,6 @@
           <a href="/about.html">About</a>
           <a href="/privacy.html">Privacy</a>
           <a href="/terms.html">Terms &amp; conditions</a>
-          <a href="/security.html">Security</a>
           <a href="https://app.liisten.com.au/signup" target="_blank" rel="noopener">Create your firm</a>
           <a href="https://app.liisten.com.au/login" target="_blank" rel="noopener">Sign in</a>
           <a href="mailto:hello@liisten.com.au">hello@liisten.com.au</a>
