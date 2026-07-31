@@ -176,7 +176,7 @@ footer { padding:52px 0 64px; }
    already run. Greyscale-muted chips, colour on hover: ecosystem context,
    not partnership claims (the disclaimer line does the legal work). */
 .export-band { padding:72px 0; }
-.exp-logos { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+.exp-logos { display:flex; flex-wrap:wrap; justify-content:space-between; gap:12px; margin-top:30px; }
 .exp-logo { display:flex; align-items:center; gap:10px; background:var(--card);
   border:1px solid var(--line); border-radius:12px; padding:11px 18px; box-shadow:var(--shadow-sm); }
 .exp-logo img { height:24px; max-width:96px; width:auto; object-fit:contain; display:block;
