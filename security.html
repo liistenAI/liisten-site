@@ -127,6 +127,7 @@
         <li>Invitation and password-reset links use 256-bit random tokens, stored only as hashes, usable once, and expiring within an hour.</li>
         <li>Every request is scoped to your firm from your session token — never from anything the browser sends — so one firm's records cannot be requested by another.</li>
         <li>Roles (owner, compliance officer, team member) govern who can manage people and billing; the server enforces this, not just the interface.</li>
+        <li><b>Multi-factor authentication</b> (authenticator-app codes, with single-use recovery codes) protects dashboard sign-in — where reports and recordings live. Any practitioner can turn it on, and the firm's owner can require it for every seat. The phone app records and uploads only; its session cannot read reports or administer the firm.</li>
       </ul>
 
       <h2>4. The browser application</h2>
@@ -149,7 +150,7 @@
       <p>The database is backed up automatically and protected against accidental deletion. Meeting audio is retained only as long as needed to process and support the record. Signed reports and file notes are firm records, retained securely for at least seven years in line with AML/CTF record-keeping obligations. See the <a href="/privacy.html">Privacy Policy</a> for how to access or delete your information.</p>
 
       <h2>9. What we're still building</h2>
-      <p>We would rather tell you what isn't there yet than imply otherwise. Multi-factor authentication, single sign-on, and customer-facing audit exports are on the roadmap and not yet available. If any of these are a requirement for your firm, tell us — it moves them up the list.</p>
+      <p>We would rather tell you what isn't there yet than imply otherwise. Single sign-on (SSO/SAML) and customer-facing audit exports are on the roadmap and not yet available. If either is a requirement for your firm, tell us — it moves them up the list.</p>
 
       <h2>10. Reporting a security issue</h2>
       <p>If you believe you've found a vulnerability, email <a href="mailto:security@liisten.com.au">security@liisten.com.au</a> with enough detail to reproduce it. We'll acknowledge you within two business days and keep you posted while we investigate. Please give us a reasonable opportunity to fix the issue before disclosing it publicly; we won't pursue action against anyone who reports in good faith and doesn't access or alter other people's data while testing.</p>
