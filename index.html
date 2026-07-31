@@ -319,6 +319,20 @@
   .foot-col a { text-decoration:none; color:var(--ink-soft); font-size:14px; font-weight:500; }
   .foot-col a:hover { color:var(--ink); }
   .foot-h { font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); font-weight:650; margin-bottom:2px; }
+
+/* Export destinations — mirrors styles.css (the homepage inlines its CSS) */
+.export-band { padding:72px 0; }
+.exp-logos { display:flex; flex-wrap:wrap; gap:12px; margin-top:30px; }
+.exp-logo { display:flex; align-items:center; gap:10px; background:var(--card);
+  border:1px solid var(--line); border-radius:12px; padding:11px 18px; box-shadow:var(--shadow-sm); }
+.exp-logo img { height:24px; max-width:96px; width:auto; object-fit:contain; display:block;
+  filter:grayscale(1); opacity:.72; transition:filter .18s ease, opacity .18s ease; }
+.exp-logo:hover img { filter:none; opacity:1; }
+.exp-logo span { font-size:13.5px; font-weight:650; color:var(--ink-soft); white-space:nowrap; }
+.exp-markbox { display:grid; place-items:center; height:24px; padding:0 7px; border-radius:6px;
+  background:var(--ink); color:#fff; font-weight:800; font-size:11px; letter-spacing:.04em; }
+.exp-note { font-size:12px; color:var(--muted); margin-top:20px; max-width:56em; }
+@media (max-width:900px) { .export-band { padding:52px 0; } }
 </style>
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
@@ -557,6 +571,26 @@
         <div class="output-cap"><div class="t">Preliminary risk assessment <span class="pill grey">New-client meetings</span></div><div class="d">Seven AUSTRAC factors, each evidence-cited — the one you review, adjust and sign.</div></div>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- EXPORT DESTINATIONS -->
+<section class="export-band">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow mono">After approval</div>
+      <h2>Reports go where your work lives.</h2>
+      <p>Approved reports export as standard PDFs — file them straight into the systems your firm already runs.</p>
+    </div>
+    <div class="exp-logos">
+      <div class="exp-logo"><span class="exp-markbox">XPM</span><span>Xero Practice Manager</span></div>
+      <div class="exp-logo"><img src="assets/export-fyi.png" alt="FYI Docs logo"><span>FYI Docs</span></div>
+      <div class="exp-logo"><img src="assets/export-sharepoint.png" alt="SharePoint logo"><span>SharePoint</span></div>
+      <div class="exp-logo"><img src="assets/export-xplan.jpg" alt="Xplan logo"><span>Xplan</span></div>
+      <div class="exp-logo"><img src="assets/export-actionstep.jpg" alt="Actionstep logo"><span>Actionstep</span></div>
+      <div class="exp-logo"><img src="assets/export-annature.jpg" alt="Annature logo"><span>Annature</span></div>
+    </div>
+    <p class="exp-note">All trademarks belong to their respective owners. Liisten produces standard PDF documents you can file anywhere; no integration or endorsement is implied.</p>
   </div>
 </section>
 
