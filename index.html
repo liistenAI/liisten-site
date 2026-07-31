@@ -139,15 +139,18 @@
   .ph-screen { height:100%; background:var(--bg); display:flex; flex-direction:column; align-items:center;
     padding:2.4em 1em 1.1em; text-align:center; }
   .ph-name { font-weight:700; font-size:1.05em; letter-spacing:-.01em; }
-  .ph-timer { font-size:1.9em; font-weight:600; letter-spacing:.04em; margin-top:.55em; }
-  .ph-wave { display:flex; align-items:center; gap:.5em; height:3.4em; margin:1.6em 0 0; }
-  .ph-wave span { width:.62em; border-radius:.4em; background:#454e58; height:1.2em; animation:wave 1.5s ease-in-out infinite; }
-  .ph-wave span:nth-child(1) { animation-delay:0s; }
-  .ph-wave span:nth-child(2) { animation-delay:.22s; }
-  .ph-wave span:nth-child(3) { animation-delay:.44s; }
-  .ph-wave span:nth-child(4) { animation-delay:.66s; }
-  @keyframes wave { 0%,100% { height:1.1em; opacity:.75; } 50% { height:3.1em; opacity:1; } }
-  .ph-rec { display:flex; align-items:center; gap:.5em; font-size:.68em; color:var(--muted); margin-top:2em; }
+  /* The listening mark — mirrors the app's recording screen: the brand bars breathe
+     gently at their resting silhouette; no timer (it reads as a meter). */
+  .ph-wave { display:flex; align-items:center; gap:.55em; height:5.2em; margin-top:auto; }
+  .ph-wave span { width:.8em; border-radius:.55em;
+    background:linear-gradient(180deg,#7e8894 0%,#4a535d 32%,#333b44 58%,#262d35 78%,#444d57 100%);
+    transform-origin:center; animation:breathe 2.4s ease-in-out infinite; }
+  .ph-wave span:nth-child(1) { height:1.7em; animation-delay:0s; }
+  .ph-wave span:nth-child(2) { height:2.8em; animation-delay:.3s; }
+  .ph-wave span:nth-child(3) { height:4.1em; animation-delay:.6s; }
+  .ph-wave span:nth-child(4) { height:2.2em; animation-delay:.9s; }
+  @keyframes breathe { 0%,100% { transform:scaleY(1); } 50% { transform:scaleY(1.22); } }
+  .ph-rec { display:flex; align-items:center; gap:.5em; font-size:.62em; color:var(--muted); margin-top:1.6em; white-space:nowrap; }
   .ph-rec .rec-dot { width:.85em; height:.85em; }
   .ph-actions { margin-top:auto; display:flex; gap:.5em; width:100%; }
   .ph-btn { flex:1; text-align:center; border-radius:2em; padding:.55em 0; font-size:.72em; font-weight:650; }
@@ -437,7 +440,6 @@
   <div class="hero-device" role="img" aria-label="A phone recording the meeting with Liisten: timer running, recording in progress">
     <div class="ph-screen">
       <div class="ph-name">Marcus Webb</div>
-      <div class="ph-timer mono">00:04:12</div>
       <div class="ph-wave" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
       <div class="ph-rec"><span class="rec-dot"></span> Recording — screen may be locked</div>
       <div class="ph-actions"><span class="ph-btn ghost">Pause</span><span class="ph-btn solid">End meeting</span></div>
