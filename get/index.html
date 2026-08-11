@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get the Liisten app</title>
+<meta name="description" content="Install Liisten on iPhone or Android — record client meetings with consent, and the reports land in your firm's dashboard.">
+<meta name="robots" content="noindex">
+<link rel="canonical" href="https://liisten.com.au/get">
+<link rel="stylesheet" href="/styles.css">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<script>
+  // The one QR code everywhere points here. Phones bounce straight to their store;
+  // anything else (desktop scan, unknown browser, JS off) falls through to the page
+  // below, which shows both stores. Keeping this URL stable is the entire point —
+  // printed and emailed QR codes never have to change when store links do.
+  (function () {
+    var ua = navigator.userAgent || "";
+    // Android first: the two UA families never overlap, but the iPad heuristic below
+    // (MacIntel + touch) can false-positive in Android emulation, so it must not win.
+    var android = /Android/.test(ua);
+    var ios = /iPhone|iPad|iPod/.test(ua) ||
+              (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+    if (android) {
+      location.replace("https://play.google.com/store/apps/details?id=au.com.liisten");
+    } else if (ios) {
+      location.replace("https://apps.apple.com/au/app/liisten/id6798523292");
+    }
+  })();
+</script>
+<style>
+  .get-wrap { min-height: 70vh; display: flex; align-items: center; justify-content: center; padding: 48px 20px; }
+  .get-card { max-width: 430px; text-align: center; }
+  .get-card h1 { font-size: 28px; margin: 18px 0 10px; }
+  .get-card p { color: var(--muted); font-size: 15px; line-height: 1.55; }
+  .get-badges { display: flex; gap: 14px; justify-content: center; margin: 26px 0 10px; flex-wrap: wrap; }
+  .get-badges img { height: 52px; width: auto; display: block; }
+  .get-note { font-size: 12.5px; color: var(--faint); margin-top: 18px; }
+</style>
+</head>
+<body>
+  <div class="get-wrap">
+    <div class="get-card">
+      <a class="brand" href="/" style="text-decoration:none; justify-content:center">
+        <svg width="34" height="22" viewBox="0 0 64 40" aria-hidden="true">
+          <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#7e8894"/><stop offset=".5" stop-color="#454e58"/><stop offset="1" stop-color="#252c34"/>
+          </linearGradient></defs>
+          <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="url(#g)"/>
+          <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="url(#g)"/>
+          <rect x="34.5" y="3" width="8" height="34" rx="4" fill="url(#g)"/>
+          <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="url(#g)"/>
+        </svg>
+        Liisten
+      </a>
+      <h1>Get the Liisten app</h1>
+      <p>Record client meetings on your phone — consent captured on the record — and the
+      file note, transcript and risk assessment land in your firm's dashboard.</p>
+      <div class="get-badges">
+        <a href="https://apps.apple.com/au/app/liisten/id6798523292"><img src="/assets/app-store-badge.png" alt="Download on the App Store"></a>
+        <a href="https://play.google.com/store/apps/details?id=au.com.liisten"><img src="/assets/google-play-badge.png" alt="Get it on Google Play"></a>
+      </div>
+      <p class="get-note">On your phone this page goes straight to your store.
+      New to Liisten? <a href="https://app.liisten.com.au/signup">Create your firm first</a> — the app signs in with the same account.</p>
+    </div>
+  </div>
+</body>
+</html>
