@@ -39,7 +39,10 @@
   .page-hero { padding:96px 0 72px; }
   .page-hero h1 { max-width:18ch; }
   .page-hero .lead { margin:20px 0 0; max-width:42em; }
-  .legal { max-width:46em; }
+  /* Text keeps a readable measure; the image rows break out to the full
+     content width so the page breathes on wide screens. */
+  .legal { max-width:none; }
+  .legal > h2, .legal > h3, .legal > p, .legal > ul { max-width:46em; }
   .legal h2 { font-size:22px; margin:44px 0 0; }
   .legal h2:first-of-type { margin-top:0; }
   .legal h3 { font-size:17px; margin:28px 0 0; }
@@ -47,16 +50,16 @@
   .legal ul { margin:14px 0 0; padding-left:22px; }
   .legal li { font-size:16px; color:var(--ink-soft); line-height:1.65; margin:6px 0; }
 
-  /* photo + text rows */
-  .rec-row { display:grid; grid-template-columns: 1.05fr .95fr; gap:44px; align-items:center; margin:36px 0 8px; }
-  .rec-row figure { margin:0; }
+  /* photo + text rows — full width, two proper columns */
+  .rec-row { display:grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap:64px; align-items:center; margin:36px 0 8px; }
+  .rec-row figure { margin:0; justify-self:center; width:100%; max-width:560px; }
   .rec-row img { width:100%; border-radius:16px; box-shadow:var(--shadow); display:block; }
   .rec-row figcaption { font-size:13px; color:var(--muted); margin-top:10px; }
   .rec-row .rec-copy p { font-size:16px; color:var(--ink-soft); line-height:1.65; margin:14px 0 0; }
   .rec-row .rec-copy p:first-child { margin-top:0; }
 
   /* the consent-screen phone */
-  .phone-shot { width:250px; max-width:100%; border-radius:22px; box-shadow:var(--shadow-lg); display:block; }
+  .rec-row img.phone-shot { width:290px; max-width:100%; margin:0 auto; border-radius:22px; box-shadow:var(--shadow-lg); display:block; }
 
   /* say-this cards */
   .script-card { background:var(--card); border:1px solid var(--line); border-radius:16px; padding:18px 22px; margin:14px 0 0; box-shadow:var(--shadow-sm); }
