@@ -149,13 +149,25 @@
       <h2>8. Backups and retention</h2>
       <p>The database is backed up automatically and protected against accidental deletion. Meeting audio is retained only as long as needed to process and support the record. Signed reports and file notes are firm records, retained securely for at least seven years in line with AML/CTF record-keeping obligations. See the <a href="/privacy.html">Privacy Policy</a> for how to access or delete your information.</p>
 
-      <h2>9. What we're still building</h2>
+      <h2>9. Third-party services (subprocessors)</h2>
+      <p>Every third party that touches any data, and what it actually receives. The rule behind the list: <b>meeting content — audio, transcripts, assessments — never leaves Sydney</b>; services outside Australia receive account metadata only (names, emails, billing details, notification text).</p>
+      <ul>
+        <li><b>AWS (Sydney, ap-southeast-2)</b> — all hosting, storage, transcription (Amazon Transcribe) and AI analysis (Anthropic Claude via AWS Bedrock's Sydney profile). The only place meeting content exists.</li>
+        <li><b>Stripe</b> — payments. Card details go directly to Stripe; we hold references, never card numbers.</li>
+        <li><b>Resend</b> — transactional email (notifications and receipts). Emails are designed to carry no meeting content.</li>
+        <li><b>Slack</b> — internal operational alerts (e.g. a new firm signed up). Account metadata only.</li>
+        <li><b>Google Workspace</b> — our support mailbox.</li>
+        <li><b>Apple App Store / Google Play</b> — app distribution. No customer data flows to either.</li>
+      </ul>
+      <p>The full register — including data categories and regions per service — is maintained internally, reviewed quarterly, and shared with the security questionnaire on request. New services are assessed against the same rule before anything ships.</p>
+
+      <h2>10. What we're still building</h2>
       <p>We would rather tell you what isn't there yet than imply otherwise. Single sign-on (SSO/SAML) and customer-facing audit exports are on the roadmap and not yet available. If either is a requirement for your firm, tell us — it moves them up the list.</p>
 
-      <h2>10. Reporting a security issue</h2>
+      <h2>11. Reporting a security issue</h2>
       <p>If you believe you've found a vulnerability, email <a href="mailto:security@liisten.com.au">security@liisten.com.au</a> with enough detail to reproduce it. We'll acknowledge you within two business days and keep you posted while we investigate. Please give us a reasonable opportunity to fix the issue before disclosing it publicly; we won't pursue action against anyone who reports in good faith and doesn't access or alter other people's data while testing.</p>
 
-      <h2>11. Contact</h2>
+      <h2>12. Contact</h2>
       <p>General security or due-diligence questions: <a href="mailto:hello@liisten.com.au">hello@liisten.com.au</a>. We're happy to complete a vendor security questionnaire.</p>
     </div>
   </div>
