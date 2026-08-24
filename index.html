@@ -216,7 +216,6 @@
     text-align:center; box-shadow:var(--shadow-sm); overflow:hidden; display:flex; flex-direction:column; gap:30px; }
   .app-card h3 { font-size:24px; font-weight:800; letter-spacing:-.02em; margin:0; }
   .app-card p { color:var(--muted); font-size:15px; margin:0 auto; max-width:26em; min-height:4.5em; }
-  /* Static store badge (not yet linked) */
   .app-badge { display:inline-block; align-self:center; }
   .app-badge img { height:46px; width:auto; display:block; }
   /* Phone frame: fixed height so both cards match and the device emerges from the base */
@@ -224,9 +223,6 @@
   .device { width:70%; margin:0 auto; height:288px; overflow:hidden; border:11px solid #14171b; border-bottom:none;
     border-radius:40px 40px 0 0; background:#14171b; box-shadow:0 -6px 40px rgba(20,23,27,.12); }
   .device img { display:block; width:100%; }
-  .device.soon { background:radial-gradient(120% 100% at 50% 25%, #f3f4f6, #e6e8ec);
-    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; }
-  .device .lbl { font-size:13px; font-weight:650; color:var(--muted); letter-spacing:.02em; }
 
   /* Steps (legacy) */
   .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; margin-top:48px; }
@@ -602,8 +598,8 @@
   <div class="wrap">
     <div class="sec-head">
       <div class="eyebrow mono">Get the app</div>
-      <h2>Coming soon to your phone.</h2>
-      <p>Liisten is on the App Store now, with Android following shortly. Record with consent from your pocket, review in the dashboard — onshore, consent-first. Create your firm first, then install the app; it signs in with the same account.</p>
+      <h2>On both stores today.</h2>
+      <p>Liisten is on the App Store and Google Play now. Record with consent from your pocket, review in the dashboard — onshore, consent-first. Create your firm first, then install the app; it signs in with the same account.</p>
     </div>
     <div class="app-cards">
       <!-- iPhone -->
@@ -616,17 +612,9 @@
       <!-- Android -->
       <div class="app-card">
         <h3>Android</h3>
-        <p>The same live, onshore experience is landing on Android next.</p>
-        <span class="app-badge"><img src="assets/google-play-badge.png" alt="Get it on Google Play — coming soon"></span>
-        <div class="app-shot"><div class="device soon">
-          <svg width="52" height="34" viewBox="0 0 64 40" aria-hidden="true">
-            <rect x="8.5" y="13.2" width="8" height="13.6" rx="4" fill="#9aa2ac"/>
-            <rect x="21.5" y="8.45" width="8" height="23.1" rx="4" fill="#9aa2ac"/>
-            <rect x="34.5" y="3" width="8" height="34" rx="4" fill="#9aa2ac"/>
-            <rect x="47.5" y="10.8" width="8" height="18.4" rx="4" fill="#9aa2ac"/>
-          </svg>
-          <div class="lbl">Android — coming soon</div>
-        </div></div>
+        <p>The same onshore experience on Android — record the consented meeting, review the AUSTRAC-mapped assessment, and sign, all from your phone.</p>
+        <a class="app-badge" href="https://play.google.com/store/apps/details?id=au.com.liisten" target="_blank" rel="noopener"><img src="assets/google-play-badge.png" alt="Get Liisten on Google Play"></a>
+        <div class="app-shot"><div class="device"><img src="assets/app-android.png" alt="Liisten on Android"></div></div>
       </div>
     </div>
   </div>
